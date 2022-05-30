@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Главная";
+}
+
+@if (SignInManager.IsSignedIn(User))
+            
+    {
+                    <div>
+                    <p>Имя пользователя: @User.Identity.Name</p>                                       
+                    </div>
+    }
+else
+    {
+               <div>
+                   <p> Добро пожаловать на ИС "DOGS"!!!</p>
+                   <P> Страница доступна только авторизованным пользователям </P>
+                   <p>Если пользователь неправильно ввел пароль заданное количество раз, учетная запись пользователя блокируется на один час</p>
+                   <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+               </div> 
+
+    }
