@@ -1,8 +1,6 @@
 ﻿/*
-
 ВАЖНО!!! 
-ПЕРЕИМЕНОВАТЬ тестовубю базу TEST2 на нужную базу
-Строго соблюдать создания очередности таблиц база DOGS
+Строго соблюдать создания очередности таблиц база SVDDOG
 1-Coats;
 2-Drugs;
 3-Organizations;
@@ -11,11 +9,10 @@
 6-DogDaarys;
 7-Persons.
 */
-
-USE [TEST2]
+USE [SVDDOG] 
 GO
-
-/****** Object:  1-Table [dbo].[Coats]    Script Date: Вт 31.05.22 14:36:32 ******/
+--1
+/****** Object:  Table [dbo].[Coats]    Script Date: Вт 31.05.22 14:36:32 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -23,23 +20,19 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Coats](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Id] [int] NOT NULL,
 	[Parent] [int] NOT NULL,
-	[CoatoNum] [nvarchar](max) NULL,
-	[Name] [nvarchar](max) NULL,
-	[Description] [nvarchar](max) NULL,
- CONSTRAINT [PK_Coats] PRIMARY KEY CLUSTERED 
+	[CoatoNum] [nvarchar](20) NOT NULL,
+	[Name] [nvarchar](255) NOT NULL,
+	[Description] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_COATO] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
-
-
-USE [TEST2]
-GO
-
-/****** Object:  2-Table [dbo].[Drugs]    Script Date: Вт 31.05.22 14:40:25 ******/
+--2
+/****** Object:  Table [dbo].[Drugs]    Script Date: Вт 31.05.22 14:40:25 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -47,22 +40,19 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Drugs](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](max) NULL,
-	[SerialNumber] [nvarchar](max) NULL,
-	[ExpirationDate] [datetime2](7) NOT NULL,
-	[Description] [nvarchar](max) NULL,
+	[Id] [int] NOT NULL,
+	[Name] [varchar](30) NOT NULL,
+	[SerialNumber] [varchar](30) NOT NULL,
+	[ExpirationDate] [date] NOT NULL,
+	[Description] [nvarchar](100) NULL,
  CONSTRAINT [PK_Drugs] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
-
-USE [TEST2]
-GO
-
-/****** Object:  3-Table [dbo].[Organizations]    Script Date: Вт 31.05.22 14:42:07 ******/
+--3
+/****** Object:  Table [dbo].[Organizations]    Script Date: Вт 31.05.22 14:42:07 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -70,21 +60,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Organizations](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Code] [int] NOT NULL,
-	[Name] [nvarchar](max) NULL,
- CONSTRAINT [PK_Organizations] PRIMARY KEY CLUSTERED 
+	[id] [int] NOT NULL,
+	[Code] [nvarchar](20) NOT NULL,
+	[Name] [nvarchar](150) NOT NULL,
+ CONSTRAINT [PK_ORG] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
-
-
-USE [TEST2]
-GO
-
-/****** Object:  4-Table [dbo].[Dogs]    Script Date: Вт 31.05.22 14:44:21 ******/
+--4
+/****** Object:  Table [dbo].[Dogs]    Script Date: Вт 31.05.22 14:44:21 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -92,26 +78,26 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Dogs](
-	[id] [uniqueidentifier] NOT NULL,
+	[id] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[CoatoId] [int] NOT NULL,
 	[OrganizationId] [int] NOT NULL,
-	[TagNumber] [nvarchar](max) NULL,
-	[CreatedDate] [datetime2](7) NULL,
-	[Owner] [nvarchar](max) NULL,
-	[PhoneNumber] [nvarchar](max) NULL,
-	[Address] [nvarchar](max) NULL,
-	[DogName] [nvarchar](max) NULL,
-	[Colour] [nvarchar](max) NULL,
-	[Gender] [int] NOT NULL,
-	[BirthYear] [int] NOT NULL,
-	[Breed] [nvarchar](max) NULL,
-	[Description] [nvarchar](max) NULL,
-	[IsAlive] [int] NOT NULL,
- CONSTRAINT [PK_Dogs] PRIMARY KEY CLUSTERED 
+	[TagNumber] [nvarchar](20) NOT NULL,
+	[CreatedDate] [smalldatetime] NOT NULL,
+	[Owner] [nvarchar](50) NOT NULL,
+	[PhoneNumber] [nvarchar](50) NULL,
+	[Address] [nvarchar](250) NOT NULL,
+	[DogName] [nvarchar](20) NOT NULL,
+	[Colour] [nvarchar](20) NULL,
+	[Gender] [int] NULL,
+	[BirthYear] [int] NULL,
+	[Breed] [nvarchar](20) NULL,
+	[Description] [nvarchar](300) NULL,
+	[IsAlive] [int] NULL,
+ CONSTRAINT [PK_DOG] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
 ALTER TABLE [dbo].[Dogs]  WITH CHECK ADD  CONSTRAINT [FK_Dogs_Coats_CoatoId] FOREIGN KEY([CoatoId])
@@ -122,19 +108,43 @@ GO
 ALTER TABLE [dbo].[Dogs] CHECK CONSTRAINT [FK_Dogs_Coats_CoatoId]
 GO
 
-ALTER TABLE [dbo].[Dogs]  WITH CHECK ADD  CONSTRAINT [FK_Dogs_Organizations_OrganizationId] FOREIGN KEY([OrganizationId])
-REFERENCES [dbo].[Organizations] ([Id])
-ON DELETE CASCADE
+ALTER TABLE [dbo].[Dogs]  WITH CHECK ADD  CONSTRAINT [FK_DOG_ORG] FOREIGN KEY([OrganizationId])
+REFERENCES [dbo].[Organizations] ([id])
+ON UPDATE CASCADE
 GO
 
-ALTER TABLE [dbo].[Dogs] CHECK CONSTRAINT [FK_Dogs_Organizations_OrganizationId]
+ALTER TABLE [dbo].[Dogs] CHECK CONSTRAINT [FK_DOG_ORG]
+GO
+--5
+/****** Object:  Table [dbo].[Person]    Script Date: Чт 02.06.22 8:59:21 ******/
+SET ANSI_NULLS ON
 GO
 
-
-USE [TEST2]
+SET QUOTED_IDENTIFIER ON
 GO
 
-/****** Object:  5-Table [dbo].[DogKaroos]    Script Date: Вт 31.05.22 14:47:12 ******/
+CREATE TABLE [dbo].[Person](
+	[id] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
+	[CoatoId] [int] NOT NULL,
+	[FullName] [nvarchar](50) NOT NULL,
+	[Gender] [int] NOT NULL,
+	[BirthDay] [smalldatetime] NULL,
+	[Phone] [nvarchar](100) NULL,
+	[PassportNumber] [nvarchar](50) NULL,
+	[DateOfIssue] [smalldatetime] NULL,
+	[IssuingOrg] [nvarchar](50) NULL,
+	[TagNumber] [nvarchar](50) NULL,
+	[Address] [nvarchar](250) NULL,
+	[University] [nvarchar](200) NULL,
+	[Specialization] [nvarchar](150) NULL,
+ CONSTRAINT [PK_PERSON] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+--6
+/****** Object:  Table [dbo].[DogKaroos]    Script Date: Чт 02.06.22 9:13:13 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -142,43 +152,50 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[DogKaroos](
-	[Id] [uniqueidentifier] NOT NULL,
+	[id] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[DogId] [uniqueidentifier] NOT NULL,
 	[PersonId] [uniqueidentifier] NOT NULL,
-	[Date] [datetime2](7) NOT NULL,
+	[Date] [smalldatetime] NOT NULL,
 	[Disease] [int] NOT NULL,
 	[Weight] [int] NOT NULL,
-	[DrugId] [int] NOT NULL,
 	[QuantityDrug] [int] NOT NULL,
-	[Description] [nvarchar](max) NULL,
- CONSTRAINT [PK_DogKaroos] PRIMARY KEY CLUSTERED 
+	[Description] [nvarchar](300) NULL,
+	[DrugId] [int] NULL,
+ CONSTRAINT [PK_DOGKAROO] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[DogKaroos]  WITH CHECK ADD  CONSTRAINT [FK_DogKaroos_Dogs_DogId] FOREIGN KEY([DogId])
+ALTER TABLE [dbo].[DogKaroos]  WITH CHECK ADD  CONSTRAINT [FK_DOGKAROO_DOG] FOREIGN KEY([DogId])
 REFERENCES [dbo].[Dogs] ([id])
+ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[DogKaroos] CHECK CONSTRAINT [FK_DogKaroos_Dogs_DogId]
+ALTER TABLE [dbo].[DogKaroos] CHECK CONSTRAINT [FK_DOGKAROO_DOG]
 GO
 
-ALTER TABLE [dbo].[DogKaroos]  WITH CHECK ADD  CONSTRAINT [FK_DogKaroos_Drugs_DrugId] FOREIGN KEY([DrugId])
+ALTER TABLE [dbo].[DogKaroos]  WITH CHECK ADD  CONSTRAINT [FK_DogKaroo_Drugs] FOREIGN KEY([DrugId])
 REFERENCES [dbo].[Drugs] ([Id])
+ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[DogKaroos] CHECK CONSTRAINT [FK_DogKaroos_Drugs_DrugId]
+ALTER TABLE [dbo].[DogKaroos] CHECK CONSTRAINT [FK_DogKaroo_Drugs]
 GO
 
-
-USE [TEST2]
+ALTER TABLE [dbo].[DogKaroos]  WITH CHECK ADD  CONSTRAINT [FK_DOGKAROO_PERSON] FOREIGN KEY([PersonId])
+REFERENCES [dbo].[Person] ([id])
+ON UPDATE CASCADE
 GO
 
-/****** Object:  6-Table [dbo].[DogDaarys]    Script Date: Вт 31.05.22 14:48:47 ******/
+ALTER TABLE [dbo].[DogKaroos] CHECK CONSTRAINT [FK_DOGKAROO_PERSON]
+GO
+
+--7
+/****** Object:  Table [dbo].[DogDaarys]    Script Date: Чт 02.06.22 9:15:15 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -186,75 +203,34 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[DogDaarys](
-	[Id] [uniqueidentifier] NOT NULL,
+	[id] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
 	[DogId] [uniqueidentifier] NOT NULL,
 	[PersonId] [uniqueidentifier] NOT NULL,
-	[Date] [datetime2](7) NOT NULL,
+	[Date] [smalldatetime] NOT NULL,
 	[Disease] [int] NOT NULL,
-	[Dose] [int] NOT NULL,
-	[DrugId] [int] NOT NULL,
-	[Description] [nvarchar](max) NULL,
- CONSTRAINT [PK_DogDaarys] PRIMARY KEY CLUSTERED 
+	[Dose] [float] NOT NULL,
+	[Description] [nvarchar](300) NULL,
+	[DrugId] [int] NULL,
+ CONSTRAINT [PK_DOGDAARY] PRIMARY KEY CLUSTERED 
 (
-	[Id] ASC
+	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
 
-ALTER TABLE [dbo].[DogDaarys]  WITH CHECK ADD  CONSTRAINT [FK_DogDaarys_Dogs_DogId] FOREIGN KEY([DogId])
-REFERENCES [dbo].[Dogs] ([id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[DogDaarys] CHECK CONSTRAINT [FK_DogDaarys_Dogs_DogId]
-GO
-
-ALTER TABLE [dbo].[DogDaarys]  WITH CHECK ADD  CONSTRAINT [FK_DogDaarys_Drugs_DrugId] FOREIGN KEY([DrugId])
+ALTER TABLE [dbo].[DogDaarys]  WITH CHECK ADD  CONSTRAINT [FK_DOGDAARY_DOG_dor] FOREIGN KEY([DrugId])
 REFERENCES [dbo].[Drugs] ([Id])
+ON UPDATE CASCADE
 ON DELETE CASCADE
 GO
 
-ALTER TABLE [dbo].[DogDaarys] CHECK CONSTRAINT [FK_DogDaarys_Drugs_DrugId]
+ALTER TABLE [dbo].[DogDaarys] CHECK CONSTRAINT [FK_DOGDAARY_DOG_dor]
 GO
 
-
-USE [TEST2]
+ALTER TABLE [dbo].[DogDaarys]  WITH CHECK ADD  CONSTRAINT [FK_DOGDAARY_PERSON] FOREIGN KEY([PersonId])
+REFERENCES [dbo].[Person] ([id])
+ON UPDATE CASCADE
 GO
 
-/****** Object:  7-Table [dbo].[Persons]    Script Date: Вт 31.05.22 14:52:01 ******/
-SET ANSI_NULLS ON
+ALTER TABLE [dbo].[DogDaarys] CHECK CONSTRAINT [FK_DOGDAARY_PERSON]
 GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[Persons](
-	[Id] [uniqueidentifier] NOT NULL,
-	[CoatoId] [int] NOT NULL,
-	[FullName] [nvarchar](max) NULL,
-	[Gender] [nvarchar](max) NULL,
-	[BrithDay] [datetime2](7) NOT NULL,
-	[Phone] [nvarchar](max) NULL,
-	[PassportNumber] [nvarchar](max) NULL,
-	[DateOfIssue] [datetime2](7) NOT NULL,
-	[IssuingOrg] [nvarchar](max) NULL,
-	[TagNumber] [nvarchar](max) NULL,
-	[Address] [nvarchar](max) NULL,
-	[University] [nvarchar](max) NULL,
-	[Specialization] [nvarchar](max) NULL,
- CONSTRAINT [PK_Persons] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[Persons]  WITH CHECK ADD  CONSTRAINT [FK_Persons_Coats_CoatoId] FOREIGN KEY([CoatoId])
-REFERENCES [dbo].[Coats] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[Persons] CHECK CONSTRAINT [FK_Persons_Coats_CoatoId]
-GO
-
-

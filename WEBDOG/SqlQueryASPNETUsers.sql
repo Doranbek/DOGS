@@ -1,7 +1,6 @@
 ﻿/*
 ВАЖНО!!! 
-ПЕРЕИМЕНОВАТЬ тестовубю базу TEST2 на нужную базу
-Строго соблюдать создания очередности таблиц база DOGS
+Строго соблюдать создания очередности таблиц база SVDDOG
 1-AspNetUsers;
 2-AspNetRoles;
 3-AspNetUserClaims;
@@ -11,10 +10,9 @@
 7-AspNetRoleClaims.
 */
 
-
-USE [TEST2]
+USE [SVDDOG]
 GO
-
+--1
 /****** Object:  Table [dbo].[AspNetUsers]    Script Date: Вт 31.05.22 11:26:15 ******/
 SET ANSI_NULLS ON
 GO
@@ -45,10 +43,7 @@ CREATE TABLE [dbo].[AspNetUsers](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-
-USE [TEST2]
-GO
-
+--2
 /****** Object:  Table [dbo].[AspNetRoles]    Script Date: Вт 31.05.22 11:52:12 ******/
 SET ANSI_NULLS ON
 GO
@@ -71,6 +66,7 @@ GO
 USE [TEST2]
 GO
 
+--3
 /****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: Вт 31.05.22 12:39:17 ******/
 SET ANSI_NULLS ON
 GO
@@ -101,6 +97,7 @@ GO
 USE [TEST2]
 GO
 
+--4
 /****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: Вт 31.05.22 11:56:03 ******/
 SET ANSI_NULLS ON
 GO
@@ -134,6 +131,7 @@ GO
 USE [TEST2]
 GO
 
+--5
 /****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: Вт 31.05.22 11:59:47 ******/
 SET ANSI_NULLS ON
 GO
@@ -165,7 +163,7 @@ GO
 
 USE [TEST2]
 GO
-
+--6
 /****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: Вт 31.05.22 12:02:02 ******/
 SET ANSI_NULLS ON
 GO
@@ -202,7 +200,7 @@ GO
 
 USE [TEST2]
 GO
-
+--7
 /****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: Вт 31.05.22 12:03:45 ******/
 SET ANSI_NULLS ON
 GO
