@@ -6,6 +6,9 @@ namespace WEBDOG.Models
 {
     public class PersonModel
     {
+        [Key]
+        [Required]
+        public Guid Id { get; set; }
         [Display(Name = "COATO")]
         [Required(ErrorMessage = "Не указан СОАТО")]
         public Coato Coato { get; set; }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WEBDOG.Models;
 
 namespace WEBDOG.Data
 {
@@ -19,5 +20,7 @@ namespace WEBDOG.Data
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<DogDaary> DogDaarys { get; set; }
         public DbSet<DogKaroo> DogKaroos { get; set; }
+        public DbSet<WEBDOG.Models.PersonModel> PersonModel { get; set; }
+        public DbSet<WEBDOG.Models.DogModel> DogModel { get; set; }
     }
 }
