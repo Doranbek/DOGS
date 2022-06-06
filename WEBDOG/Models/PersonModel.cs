@@ -1,20 +1,22 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using WEBDOG.Data;
 
-namespace WEBDOG.Data
+namespace WEBDOG.Models
 {
-    public class Person
+    public class PersonModel
     {
-        [Key]
-        public Guid Id { get; set; }
         [Display(Name = "COATO")]
+        [Required(ErrorMessage = "Не указан СОАТО")]
         public Coato Coato { get; set; }
         public int CoatoId { get; set; }
 
         [Display(Name = "Ф.И.О")]
+        [Required(ErrorMessage = "Не указан Ф.И.О")]
         public string FullName { get; set; }
 
         [Display(Name = "Пол")]
+        [Required(ErrorMessage = "Не указан Пол")]
         public string Gender { get; set; }
 
         [Display(Name = "Дата рождения")]
@@ -31,13 +33,13 @@ namespace WEBDOG.Data
 
         [Display(Name = "Выдан")]
         public string IssuingOrg { get; set; }
-        
+
         [Display(Name = "ПИН")]
         public string TagNumber { get; set; }
 
         [Display(Name = "Адрес")]
         public string Address { get; set; }
-        
+
         [Display(Name = "Университет")]
         public string University { get; set; }
 
