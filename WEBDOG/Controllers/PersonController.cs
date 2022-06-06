@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -7,6 +8,7 @@ using WEBDOG.Data;
 
 namespace WEBDOG.Controllers
 {
+    [Authorize]
     public class PersonController : Controller
     {
         private readonly ILogger<PersonController> _logger;
@@ -44,8 +46,26 @@ namespace WEBDOG.Controllers
                 return View();
             }
         }
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
 
-  
+        // POST: DogController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: PersonController/Delete/5
         public ActionResult Delete(int id)
         {

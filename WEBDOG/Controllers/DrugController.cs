@@ -9,36 +9,36 @@ using WEBDOG.Data;
 namespace WEBDOG.Controllers
 {
     [Authorize]
-    public class DogController : Controller
+    public class DrugController : Controller
     {
-        private readonly ILogger<DogController> _logger;
+        private readonly ILogger<DrugController> _logger;
         private readonly AppDbContext db;
 
-        public DogController(ILogger<DogController> logger, AppDbContext db)
+        public DrugController(ILogger<DrugController> logger, AppDbContext db)
         {
             _logger = logger;
             this.db = db;
         }
-        // GET: DogController
+        // GET: DrugController
         public async Task<ActionResult> Index()
         {
-            var listModel = await db.Dogs.ToListAsync();
+            var listModel = await db.Drugs.ToListAsync();
             return View(listModel);
         }
 
-        // GET: DogController/Details/5
+        // GET: DrugController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: DogController/Create
+        // GET: DrugController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DogController/Create
+        // POST: DrugController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -53,13 +53,13 @@ namespace WEBDOG.Controllers
             }
         }
 
-        // GET: DogController/Edit/5
+        // GET: DrugController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: DogController/Edit/5
+        // POST: DrugController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -74,13 +74,13 @@ namespace WEBDOG.Controllers
             }
         }
 
-        // GET: DogController/Delete/5
+        // GET: DrugController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: DogController/Delete/5
+        // POST: DrugController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
