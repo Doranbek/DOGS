@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace WEBDOG.Migrations
 {
-    public partial class V1 : Migration
+    public partial class V2D : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,6 +92,20 @@ namespace WEBDOG.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Organizations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrgUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrganizationId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrgUsers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -234,12 +250,12 @@ namespace WEBDOG.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CoatoId = table.Column<int>(type: "int", nullable: false),
                     OrganizationId = table.Column<int>(type: "int", nullable: false),
-                    TagNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Owner = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TagNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Owner = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DogName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DogName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Colour = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<int>(type: "int", nullable: false),
                     BirthYear = table.Column<int>(type: "int", nullable: false),
@@ -300,7 +316,7 @@ namespace WEBDOG.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Disease = table.Column<int>(type: "int", nullable: false),
                     Weight = table.Column<int>(type: "int", nullable: false),
@@ -422,6 +438,9 @@ namespace WEBDOG.Migrations
 
             migrationBuilder.DropTable(
                 name: "DogKaroos");
+
+            migrationBuilder.DropTable(
+                name: "OrgUsers");
 
             migrationBuilder.DropTable(
                 name: "Persons");

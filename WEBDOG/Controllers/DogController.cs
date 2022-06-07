@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 
@@ -75,9 +76,21 @@ namespace WEBDOG.Controllers
         }
 
         // GET: DogController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dog = await db.Dogs.FirstOrDefaultAsync(m => m.id == (Guid)id);
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return View(dog);
         }
 
         // POST: DogController/Delete/5

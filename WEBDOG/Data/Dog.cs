@@ -10,11 +10,12 @@ namespace WEBDOG.Data
         public Guid id { get; set; }
 
         [Display(Name = "COATO")]
+        //public Coato Coato { get; set; }
         public int CoatoId { get; set; }
-
 
         [Required]
         [Display(Name = "Организация")]
+        //public Organization Organization { get; set; }
         public int OrganizationId { get; set; }
 
         [Required]
@@ -22,7 +23,7 @@ namespace WEBDOG.Data
         public string TagNumber { get; set; }
 
         [Display(Name = "Дата создания")]
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
         [Required]
         [Display(Name = "Ф.И.О. владелца")]

@@ -22,7 +22,6 @@ namespace WEBDOG.Data
         public DateTime ExpirationDate { get; set; }
 
         [Display(Name = "Описание")]
-        public string Description { get; set; }        
-
+        public string Description { get; set; }
     }
 }

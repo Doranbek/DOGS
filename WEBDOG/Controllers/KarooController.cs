@@ -20,7 +20,7 @@ namespace WEBDOG.Controllers
         // GET: KarooController
         public async Task<ActionResult> Index()
         {
-            var listModel = await db.DogKaroos.ToListAsync();
+            var listModel = await db.DogKaroos.FirstOrDefaultAsync(m => m.Weight == 25);
             return View(listModel);
         }
 
