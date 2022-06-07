@@ -33,8 +33,6 @@ CREATE TABLE [dbo].[AspNetUsers](
 GO
 
 
-USE [TEST2]
-GO
 
 /****** Object:  Table [dbo].[AspNetRoles]    Script Date: Вт 31.05.22 11:52:12 ******/
 SET ANSI_NULLS ON
@@ -55,8 +53,6 @@ CREATE TABLE [dbo].[AspNetRoles](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
 
-USE [TEST2]
-GO
 
 /****** Object:  Table [dbo].[AspNetUserClaims]    Script Date: Вт 31.05.22 12:39:17 ******/
 SET ANSI_NULLS ON
@@ -85,8 +81,6 @@ GO
 ALTER TABLE [dbo].[AspNetUserClaims] CHECK CONSTRAINT [FK_AspNetUserClaims_AspNetUsers_UserId]
 GO
 
-USE [TEST2]
-GO
 
 /****** Object:  Table [dbo].[AspNetUserTokens]    Script Date: Вт 31.05.22 11:56:03 ******/
 SET ANSI_NULLS ON
@@ -118,8 +112,6 @@ ALTER TABLE [dbo].[AspNetUserTokens] CHECK CONSTRAINT [FK_AspNetUserTokens_AspNe
 GO
 
 
-USE [TEST2]
-GO
 
 /****** Object:  Table [dbo].[AspNetUserLogins]    Script Date: Вт 31.05.22 11:59:47 ******/
 SET ANSI_NULLS ON
@@ -150,8 +142,6 @@ ALTER TABLE [dbo].[AspNetUserLogins] CHECK CONSTRAINT [FK_AspNetUserLogins_AspNe
 GO
 
 
-USE [TEST2]
-GO
 
 /****** Object:  Table [dbo].[AspNetUserRoles]    Script Date: Вт 31.05.22 12:02:02 ******/
 SET ANSI_NULLS ON
@@ -187,8 +177,7 @@ GO
 ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_AspNetUserRoles_AspNetUsers_UserId]
 GO
 
-USE [TEST2]
-GO
+
 
 /****** Object:  Table [dbo].[AspNetRoleClaims]    Script Date: Вт 31.05.22 12:03:45 ******/
 SET ANSI_NULLS ON
