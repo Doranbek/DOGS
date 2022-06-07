@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{419AA5B1-B35F-492A-871E-9FE35463B976}"
 	ProjectSection(SolutionItems) = preProject
 		SQLScriptDOGS070622.txt = SQLScriptDOGS070622.txt
-		SQLScriptOrgUsers070622.txt = SQLScriptOrgUsers070622.txt
 		SQLScript_ASPNETUSERS070622.txt = SQLScript_ASPNETUSERS070622.txt
 	EndProjectSection
 EndProject
