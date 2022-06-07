@@ -1,4 +1,4 @@
-USE [test] 
+USE [SVDDOG] 
 GO
 --¹1
 /****** Object:  Table [dbo].[Coats]    Script Date: Âò 31.05.22 14:36:32 ******/
