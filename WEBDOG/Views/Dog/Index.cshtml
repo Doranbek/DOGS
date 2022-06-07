@@ -104,12 +104,17 @@
                 @Html.DisplayFor(modelItem => item.IsAlive)
             </td>
             <td>
-                <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |
-                <a  asp-action="Details" asp-route-id="@item.id">Подробнее</a> |
+                <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |@*
+                <a  asp-action="Details" asp-route-id="@item.id">Подробнее</a> |*@
                 <a  asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+
                 @*<a class ="btn btn-link" asp-action="Edit" asp-route-id="@item.id">Изменить</a> |
                 <a class ="btn btn-link" asp-action="Details" asp-route-id="@item.id">Подробнее</a> |
                 <a class="btn btn-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@
+            </td>
+            <td>
+                <a asp-action="Index" asp-controller="Karoo" asp-route-id="@item.id">Кароо</a>
+                <a asp-action="Index" asp-controller="Daary" asp-route-id="@item.id">Даары</a>
             </td>
         </tr>
 }
