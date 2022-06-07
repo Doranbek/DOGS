@@ -22,5 +22,6 @@ namespace WEBDOG.Data
         public DbSet<DogKaroo> DogKaroos { get; set; }
         public DbSet<WEBDOG.Models.PersonModel> PersonModel { get; set; }
         public DbSet<WEBDOG.Models.DogModel> DogModel { get; set; }
+        public DbSet<WEBDOG.Models.DogDaaryModel> DogDaaryModel { get; set; }
     }
 }
