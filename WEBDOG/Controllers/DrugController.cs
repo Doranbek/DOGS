@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 using WEBDOG.Data;
+using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
@@ -26,12 +28,6 @@ namespace WEBDOG.Controllers
             return View(listModel);
         }
 
-        // GET: DrugController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: DrugController/Create
         public ActionResult Create()
         {
@@ -41,58 +37,95 @@ namespace WEBDOG.Controllers
         // POST: DrugController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(DrugModel model)
         {
-            try
+            if (!ModelState.IsValid) return View(model);
+
+            var Drug = new Drug
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                Name = model.Name,
+                SerialNumber = model.SerialNumber,
+                ExpirationDate = model.ExpirationDate,
+                Description = model.Description
+            };
+
+            db.Add(Drug);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: DrugController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var drug = await db.Drugs.FindAsync(id);
+            if (drug == null)
+            {
+                return NotFound();
+            }
+            return View(drug);
         }
 
         // POST: DrugController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, Drug drug)
         {
-            try
+
+            if (id != drug.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Update(drug);
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(drug);
         }
 
         // GET: DrugController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var drug = await db.Drugs.FirstOrDefaultAsync(m => m.Id == id);
+            if (drug == null)
+            {
+                return NotFound();
+            }
+
+            return View(drug);
         }
 
         // POST: DrugController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var Drug = await db.Drugs.FindAsync(id);
+            db.Drugs.Remove(Drug);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

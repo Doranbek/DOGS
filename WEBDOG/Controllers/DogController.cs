@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 using WEBDOG.Data;
+using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
@@ -40,19 +42,36 @@ namespace WEBDOG.Controllers
 
         // POST: DogController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [ValidateAntiForgeryToken]     
+        public async Task<IActionResult> Create(DogModel model)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            if (!ModelState.IsValid) return View(model);
 
+            var Dog = new Dog
+            {
+                CoatoId = model.CoatoId,
+                OrganizationId = model.OrganizationId,
+                TagNumber = model.TagNumber,
+                CreatedDate = DateTime.UtcNow,
+                Owner = model.Owner,
+                PhoneNumber = model.PhoneNumber,
+                Address = model.Address,
+                DogName = model.DogName, 
+                Colour = model.Colour,
+                Gender = model.Gender,
+                BirthYear = model.BirthYear,
+                Breed = model.Breed,
+                Description = model.Description,
+                IsAlive = model.IsAlive
+
+            };
+
+            db.Add(Dog);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
         // GET: DogController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -75,24 +94,32 @@ namespace WEBDOG.Controllers
         }
 
         // GET: DogController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dog = await db.Dogs.FirstOrDefaultAsync(m => m.id == (Guid)id);
+            if (dog == null)
+            {
+                return NotFound();
+            }
+
+            return View(dog);
         }
 
         // POST: DogController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var Deldog = await db.Dogs.FindAsync(id);
+            db.Dogs.Remove(Deldog);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

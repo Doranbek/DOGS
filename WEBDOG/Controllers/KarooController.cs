@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 
@@ -18,9 +19,9 @@ namespace WEBDOG.Controllers
             this.db = db;
         }
         // GET: KarooController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(Guid id)
         {
-            var listModel = await db.DogKaroos.ToListAsync();
+            var listModel = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == id);
             return View(listModel);
         }
 

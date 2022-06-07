@@ -15,10 +15,10 @@ namespace WEBDOG.Data
         public string FullName { get; set; }
 
         [Display(Name = "Пол")]
-        public string Gender { get; set; }
+        public int Gender { get; set; }
 
         [Display(Name = "Дата рождения")]
-        public DateTime BrithDay { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         [Display(Name = "Телефон")]
         public string Phone { get; set; }
@@ -27,7 +27,7 @@ namespace WEBDOG.Data
         public string PassportNumber { get; set; }
 
         [Display(Name = "Срок выдачи")]
-        public DateTime DateOfIssue { get; set; }
+        public DateTime? DateOfIssue { get; set; }
 
         [Display(Name = "Выдан")]
         public string IssuingOrg { get; set; }
