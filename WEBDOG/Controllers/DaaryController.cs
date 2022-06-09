@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WEBDOG.Data;
+using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
@@ -11,6 +14,7 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
+        private Guid _id;
 
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
@@ -18,10 +22,17 @@ namespace WEBDOG.Controllers
             this.db = db;
         }
         // GET: DaaryController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(Guid id)
         {
-            var listModel = await db.DogDaarys.ToListAsync();
+            _id = id;
+            var listModel = await db.DogDaarys.Where(p=>p.DogId==id).ToListAsync();
             return View(listModel);
+        }
+
+        // GET: DaaryController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
         }
 
 
@@ -30,62 +41,101 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
-
         // POST: DaaryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(DogDaaryModel model)
         {
-            try
+            if (!ModelState.IsValid) return View(model);
+
+            var DogDaary = new DogDaary
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                DogId = _id,
+                PersonId = model.PersonId,
+                Date = DateTime.UtcNow,
+                Disease = model.Disease,
+                Dose  = model.Dose,
+                DrugId = model.DrugId,
+                Description = model.Description
+            };
+
+            db.Add(DogDaary);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: DaaryController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task <ActionResult> Edit(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dogdaary = await db.DogDaarys.FindAsync(id);
+
+            if (dogdaary == null)
+            {
+                return NotFound();
+            }
+            return View(dogdaary);
         }
 
         // POST: DaaryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Guid id, DogDaary dogdaary)
         {
-            try
+            if (id != dogdaary.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Update(dogdaary);
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(dogdaary);
         }
 
         // GET: DaaryController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var daary = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == (Guid)id);
+            if (daary == null)
+            {
+                return NotFound();
+            }
+
+            return View(daary);
         }
 
         // POST: DaaryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var Deldaary = await db.DogDaarys.FindAsync(id);
+            db.DogDaarys.Remove(Deldaary);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
