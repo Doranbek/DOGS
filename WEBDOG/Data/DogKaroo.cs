@@ -6,31 +6,35 @@ namespace WEBDOG.Data
     public class DogKaroo
     {
         [Key]
+        [Required]
         public Guid Id { get; set; }
 
         [Display(Name = "Собака")]
-        public Dog Dog { get; set; }
         public Guid DogId { get; set; }
-        //public Person Person { get; set; }
+     
+        
+        [Display(Name = "Дата дегельминтизаци")]
+        public DateTime Date { get; set; }
+
 
         [Display(Name = "Ветеринар")]
         public Guid? PersonId { get; set; }
 
-        [Display(Name = "Дата вакцинации")]
-        public DateTime Date { get; set; }
+        [Display(Name = "Лекарства")]
+        public int DrugId { get; set; }
+
 
         [Display(Name = "Болезнь")]
         public int Disease { get; set; }
 
+
         [Display(Name = "Весь")]
         public int Weight { get; set; }
 
-        [Display(Name = "Лекарства")]
-        public Drug Drug { get; set; }
-        public int DrugId { get; set; }
 
-        [Display(Name = "Колличество доз")]
+        [Display(Name = "Колличество таблеток")]
         public int QuantityDrug { get; set; }
+
 
         [Display(Name = "Описание")]
         public string Description { get; set; }

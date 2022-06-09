@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WEBDOG.Data;
+using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
@@ -12,16 +14,18 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<KarooController> _logger;
         private readonly AppDbContext db;
+        private  Guid _id;
 
         public KarooController(ILogger<KarooController> logger, AppDbContext db)
         {
             _logger = logger;
             this.db = db;
         }
-        // GET: KarooController
+        //GET: KarooController
         public async Task<ActionResult> Index(Guid id)
         {
-            var listModel = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == id);
+            _id = id;
+            var listModel = await db.DogKaroos.Where(m => m.DogId == id).ToListAsync();
             return View(listModel);
         }
 
@@ -40,58 +44,99 @@ namespace WEBDOG.Controllers
         // POST: KarooController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<IActionResult> Create(DogKarooModel model)
         {
-            try
+            if (!ModelState.IsValid) return View(model);
+
+            var DogKaroo = new DogKaroo
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                DogId = _id,
+                PersonId = model.PersonId,
+                Date = DateTime.UtcNow,
+                Disease = model.Disease,
+                Weight = model.Weight,
+                DrugId = model.DrugId,  
+                QuantityDrug = model.QuantityDrug,
+                Description = model.Description
+            };
+
+            db.Add(DogKaroo);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: KarooController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var dogkaroo = await db.DogKaroos.FindAsync(id);
+            if (dogkaroo == null)
+            {
+                return NotFound();
+            }
+            return View(dogkaroo);
         }
 
         // POST: KarooController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(Guid id, DogKaroo dogkaroo)
         {
-            try
+            if (id != dogkaroo.Id)
             {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Update(dogkaroo);
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
-            {
-                return View();
-            }
+            return View(dogkaroo);
         }
 
         // GET: KarooController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var karoo = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == (Guid)id);
+            if (karoo == null)
+            {
+                return NotFound();
+            }
+
+            return View(karoo);
         }
 
         // POST: KarooController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var Delkaroo = await db.DogKaroos.FindAsync(id);
+            db.DogKaroos.Remove(Delkaroo);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

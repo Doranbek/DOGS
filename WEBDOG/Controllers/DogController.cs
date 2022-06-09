@@ -28,12 +28,6 @@ namespace WEBDOG.Controllers
             return View(listModel);
         }
 
-        // GET: DogController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: DogController/Create
         public ActionResult Create()
         {
@@ -71,26 +65,6 @@ namespace WEBDOG.Controllers
             await db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
-        }
-        // GET: DogController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: DogController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: DogController/Delete/5
