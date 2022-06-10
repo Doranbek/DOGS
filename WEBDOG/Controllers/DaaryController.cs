@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEBDOG.Data;
@@ -35,12 +37,33 @@ namespace WEBDOG.Controllers
             return View();
         }
 
+        //public IActionResult Create()
+        //{
+        //      return View();
+        //}
+        
 
-        // GET: DaaryController/Create
         public ActionResult Create()
         {
             return View();
         }
+        public IActionResult ReIndex()
+        {
+            var vm = new DrugModel();
+            var items = db.Drugs.Select(p => new SelectListItem()
+            {
+                Value = p.Id.ToString(),
+                Text = p.Name
+            }).ToList();
+            var viewModeldr = new DogDaaryModel
+            {
+                Drugspis = items
+            };
+            return View(vm);
+            //return View();
+        }
+
+
         // POST: DaaryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -55,7 +78,7 @@ namespace WEBDOG.Controllers
                 Date = DateTime.UtcNow,
                 Disease = model.Disease,
                 Dose  = model.Dose,
-                DrugId = model.DrugId,
+                DrugId = ViewBag.DrugId,
                 Description = model.Description
             };
 
@@ -64,6 +87,7 @@ namespace WEBDOG.Controllers
             await db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+            
         }
 
         // GET: DaaryController/Edit/5

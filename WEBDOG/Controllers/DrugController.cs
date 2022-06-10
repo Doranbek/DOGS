@@ -25,12 +25,14 @@ namespace WEBDOG.Controllers
         public async Task<ActionResult> Index()
         {
             var listModel = await db.Drugs.ToListAsync();
+             
             return View(listModel);
         }
 
         // GET: DrugController/Create
         public ActionResult Create()
         {
+            
             return View();
         }
 

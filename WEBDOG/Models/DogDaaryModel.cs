@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WEBDOG.Data;
 
@@ -23,14 +25,17 @@ namespace WEBDOG.Models
 
         [Display(Name = "Доза")]
         [Required(ErrorMessage = "Не указана доза")]
+        //[Range(typeof(decimal), "0.5", "5")]
         public double Dose { get; set; }
 
         [Display(Name = "Лекарства")]
         [Required(ErrorMessage = "Не выбрано лекарства")]
-        //public Drug Drug { get; set; }
         public int DrugId { get; set; }
+        //public int Drugspis { get; set; }
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
+        public IEnumerable<SelectListItem> Drugspis { get; set; }  
+
     }
 }

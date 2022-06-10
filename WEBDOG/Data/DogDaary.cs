@@ -21,13 +21,16 @@ namespace WEBDOG.Data
 
         [Display(Name = "Дата вакцинации")]
         public DateTime Date { get; set; }
-        
+
+        [Required]
         [Display(Name = "Болезнь")]
         public int Disease { get; set; }
 
+        [Required]
         [Display(Name = "Доза")]
-        public double Dose? { get; set; }
-        
+        public double Dose { get; set; }
+
+        [Required]
         [Display(Name = "Лекарства")]
         public Drug Drug { get; set; }
         public int DrugId { get; set; }
