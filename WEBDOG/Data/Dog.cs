@@ -17,10 +17,11 @@ namespace WEBDOG.Data
         public Organization Organization { get; set; }
 
         [Required]
-        [Display(Name = "Регистрационный номер")]
+        [Display(Name = "Номер регистрации")]
         public string TagNumber { get; set; }
 
         [Display(Name = "Дата создания")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? CreatedDate { get; set; }
 
         [Required]

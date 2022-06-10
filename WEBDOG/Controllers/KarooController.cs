@@ -51,9 +51,7 @@ namespace WEBDOG.Controllers
             var DogKaroo = new DogKaroo
             {
                 DogId = _id,
-                PersonId = model.PersonId,
                 Date = DateTime.UtcNow,
-                Disease = model.Disease,
                 Weight = model.Weight,
                 DrugId = model.DrugId,  
                 QuantityDrug = model.QuantityDrug,

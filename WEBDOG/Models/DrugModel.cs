@@ -17,7 +17,10 @@ namespace WEBDOG.Models
         [Display(Name = "срок годности")]
         [Required(ErrorMessage = "Не указан срок годност")]
         public DateTime ExpirationDate { get; set; }
-        
+
+        [Display(Name = "Болезнь")]
+        public string Disease { get; set; }
+
         [Display(Name = "Описание")]
         public string Description { get; set; }
     }

@@ -17,7 +17,7 @@ namespace WEBDOG.Models
         [Required(ErrorMessage = "Не указан организация")]
         public int OrganizationId { get; set; }
 
-        [Display(Name = "Регистрационный номер")]
+        [Display(Name = "Номер регистрации")]
         [Required(ErrorMessage = "Регистрационный номер не заполнен")]
         public string TagNumber { get; set; }
 
