@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 using WEBDOG.Models;
@@ -15,6 +17,14 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DogController> _logger;
         private readonly AppDbContext db;
+        private string userlogin
+        {
+            get
+            {
+                string userLogin = User.Identity.Name;
+                return userLogin;
+            }
+        }
 
         public DogController(ILogger<DogController> logger, AppDbContext db)
         {
@@ -24,7 +34,8 @@ namespace WEBDOG.Controllers
         // GET: DogController
         public async Task<ActionResult> Index()
         {
-            var listModel = await db.Dogs.ToListAsync();
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            var listModel = await db.Dogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
             return View(listModel);
         }
 

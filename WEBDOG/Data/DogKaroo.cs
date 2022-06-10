@@ -16,17 +16,8 @@ namespace WEBDOG.Data
         [Display(Name = "Дата дегельминтизаци")]
         public DateTime Date { get; set; }
 
-
-        [Display(Name = "Ветеринар")]
-        public Guid? PersonId { get; set; }
-
         [Display(Name = "Лекарства")]
         public int DrugId { get; set; }
-
-
-        [Display(Name = "Болезнь")]
-        public int Disease { get; set; }
-
 
         [Display(Name = "Весь")]
         public int Weight { get; set; }

@@ -21,6 +21,9 @@ namespace WEBDOG.Data
         [Display(Name = "срок годности")]
         public DateTime ExpirationDate { get; set; }
 
+        [Display(Name = "Болезнь")]
+        public string Disease { get; set; }
+
         [Display(Name = "Описание")]
         public string Description { get; set; }
     }

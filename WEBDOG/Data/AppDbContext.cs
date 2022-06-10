@@ -16,13 +16,9 @@ namespace WEBDOG.Data
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<Dog> Dogs { get; set; }
         public DbSet<Coato> Coats { get; set; }
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Drug> Drugs { get; set; }
         public DbSet<DogDaary> DogDaarys { get; set; }
         public DbSet<DogKaroo> DogKaroos { get; set; }
-        public DbSet<OrgUser> OrgUsers { get; set; }
-        public DbSet<WEBDOG.Models.DogModel> DogModel { get; set; }
-        public DbSet<WEBDOG.Models.DrugModel> DrugModel { get; set; }
-        public DbSet<WEBDOG.Models.DogKarooModel> DogKarooModel { get; set; }
+
     }
 }

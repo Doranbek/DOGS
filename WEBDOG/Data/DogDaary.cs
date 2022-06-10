@@ -10,14 +10,9 @@ namespace WEBDOG.Data
         [Display(Name = "Собака")]
         public Dog Dog { get; set; }
         public Guid DogId { get; set; }
-        //public Person Person { get; set; }
-        [Display(Name = "Ветеринар")]
-        public Guid PersonId { get; set; }
+
         [Display(Name = "Дата вакцинации")]
         public DateTime Date { get; set; }
-        
-        [Display(Name = "Болезнь")]
-        public int Disease { get; set; }
 
         [Display(Name = "Доза")]
         public int Dose { get; set; }

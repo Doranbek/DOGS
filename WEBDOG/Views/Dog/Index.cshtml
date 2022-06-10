@@ -17,9 +17,6 @@
                 @Html.DisplayNameFor(model => model.CoatoId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrganizationId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.TagNumber)
             </th>
             <th>
@@ -64,9 +61,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CoatoId)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrganizationId)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.TagNumber)
             </td>
@@ -113,8 +108,8 @@
                 <a class="btn btn-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@
             </td>
             <td>
-                <a asp-action="Index" asp-controller="Karoo" asp-route-id="@item.id">Кароо</a>
-                <a asp-action="Index" asp-controller="Daary" asp-route-id="@item.id">Даары</a>
+                <a asp-action="Index" asp-controller="Karoo" asp-route-id="@item.id">Дегельминтизация</a>
+                <a asp-action="Index" asp-controller="Daary" asp-route-id="@item.id">Вакцинация</a>
             </td>
         </tr>
 }
