@@ -9,9 +9,9 @@ namespace WEBDOG.Data
         [Required]
         public Guid Id { get; set; }
 
-        [Display(Name = "Собака")]
+        //[Display(Name = "Собака")]
         public Guid DogId { get; set; }
-        public Dog Dog { get; set; }
+        //public Dog Dog { get; set; }
 
 
         //public Person Person { get; set; }
@@ -26,7 +26,7 @@ namespace WEBDOG.Data
         public int Disease { get; set; }
 
         [Display(Name = "Доза")]
-        public int Dose { get; set; }
+        public double Dose? { get; set; }
         
         [Display(Name = "Лекарства")]
         public Drug Drug { get; set; }

@@ -1,18 +1,20 @@
 ﻿@model IEnumerable<WEBDOG.Data.DogDaary>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Daary";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Даары</h1>
+<h1>Даарылоо</h1>
+
+ <a asp-action="Create" class="btn btn-primary">Добавить новый запись</a>
 
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Dog)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.PersonId)
             </th>
@@ -26,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Dose)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Drug)
+                @Html.DisplayNameFor(model => model.DrugId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -37,9 +39,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.Dog.Address)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.PersonId)
             </td>
@@ -53,7 +55,7 @@
                 @Html.DisplayFor(modelItem => item.Dose)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Drug.Id)
+                @Html.DisplayFor(modelItem => item.DrugId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)

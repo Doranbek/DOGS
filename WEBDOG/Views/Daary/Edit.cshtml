@@ -3,13 +3,13 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+ }
 
-<h1>Edit</h1>
+  <h1>Edit</h1>
 
-<h4>DogKaroo</h4>
-<hr />
-<div class="row">
+  <h4>DogDaary</h4>
+   <hr />
+   <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -55,15 +55,25 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
+ </div>
+@*@section Scripts
+  {<script>
+    $(function () { 
+        $("#Dose").on("keypress keyup blur", function (event) { 
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    })
+   </script>}*@
+ <div>
     <a asp-action="Index">Back to List</a>
-</div>
+ </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
