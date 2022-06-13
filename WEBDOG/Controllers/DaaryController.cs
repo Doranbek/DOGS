@@ -43,25 +43,35 @@ namespace WEBDOG.Controllers
         //}
         
 
-        public ActionResult Create()
+        public IActionResult Create()
         {
+           //var  DrugItems = db.Drugs.Select(p => new SelectListItem()
+           var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
+                {
+                    Text = DrugModelID.Name,
+                    Value = DrugModelID.Id.ToString()
+                }).ToList();
+            DrugItems.Insert(0, new SelectListItem()
+            {
+                Text="-Выбрать лекарство-",
+                Value=string.Empty 
+            });
+            ViewBag.ListDrugIdOff = DrugItems;
             return View();
+            
         }
-        public IActionResult ReIndex()
-        {
-            var vm = new DrugModel();
-            var items = db.Drugs.Select(p => new SelectListItem()
-            {
-                Value = p.Id.ToString(),
-                Text = p.Name
-            }).ToList();
-            var viewModeldr = new DogDaaryModel
-            {
-                Drugspis = items
-            };
-            return View(vm);
-            //return View();
-        }
+        //public IActionResult ReIndex()
+        //{
+        //    //var viewmodelDrug = new DrugModel();
+        //    var  items = db.Drugs.Select(p => new SelectListItem()
+        //    {
+        //        Value = p.Id.ToString(),
+        //        Text = p.Name
+        //    }).ToList();
+            
+        //    return View(items);
+        //    //return View();
+        //}
 
 
         // POST: DaaryController/Create
@@ -78,8 +88,9 @@ namespace WEBDOG.Controllers
                 Date = DateTime.UtcNow,
                 Disease = model.Disease,
                 Dose  = model.Dose,
-                DrugId = ViewBag.DrugId,
+                DrugId =model.DrugId,
                 Description = model.Description
+                
             };
 
             db.Add(DogDaary);

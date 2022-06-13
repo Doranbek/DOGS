@@ -17,6 +17,7 @@ namespace WEBDOG.Models
         public Guid PersonId { get; set; }
 
         [Display(Name = "Дата вакцинации")]
+        [DisplayFormat(DataFormatString="{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Болезнь")]
@@ -31,11 +32,12 @@ namespace WEBDOG.Models
         [Display(Name = "Лекарства")]
         [Required(ErrorMessage = "Не выбрано лекарства")]
         public int DrugId { get; set; }
-        //public int Drugspis { get; set; }
+        //public string DrugId { get; set; }
+        public List<SelectListItem> ListDrugIdOff { get; set; }
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
-        public IEnumerable<SelectListItem> Drugspis { get; set; }  
+       
 
     }
 }
