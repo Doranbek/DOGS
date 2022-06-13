@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WEBDOG.Data;
 
@@ -11,9 +12,10 @@ using WEBDOG.Data;
 namespace WEBDOG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220609190135_v3")]
+    partial class v3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,16 +326,18 @@ namespace WEBDOG.Migrations
                     b.Property<Guid>("DogId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<double>("Dose")
-                        .HasColumnType("float");
+                    b.Property<int>("Dose")
+                        .HasColumnType("int");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PersonId")
+                    b.Property<Guid>("PersonId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DogId");
 
                     b.HasIndex("DrugId");
 
@@ -663,17 +667,20 @@ namespace WEBDOG.Migrations
 
             modelBuilder.Entity("WEBDOG.Data.DogDaary", b =>
                 {
+                    b.HasOne("WEBDOG.Data.Dog", "Dog")
+                        .WithMany()
+                        .HasForeignKey("DogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("WEBDOG.Data.Drug", "Drug")
                         .WithMany()
                         .HasForeignKey("DrugId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-=======
                     b.Navigation("Dog");
 
->>>>>>> FixBugs
                     b.Navigation("Drug");
                 });
 

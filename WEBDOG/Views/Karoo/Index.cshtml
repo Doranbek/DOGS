@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WEBDOG.Data.DogKaroo>
 
 @{
-    ViewData["Title"] = "Karoo";
+    ViewData["Title"] = "Дегельминтизация";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -23,9 +23,6 @@
                Антигельминтик
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Disease)
-            </th>
-            <th>
                 Вес собак, КГ
             </th>
             <th>
@@ -44,13 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PersonId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.DrugId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Disease)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Weight)

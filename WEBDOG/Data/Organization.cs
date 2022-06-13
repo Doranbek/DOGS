@@ -8,6 +8,7 @@ namespace WEBDOG.Data
         public int Id { get; set; }
         public int Code { get; set; }
         public string Name { get; set; }
+        public string Login { get; set; }
 
     }
 }
