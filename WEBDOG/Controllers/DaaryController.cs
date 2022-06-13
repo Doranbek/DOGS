@@ -16,8 +16,7 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
-        private Guid dogId;
-        private Guid id;
+        private Guid _id;
 
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
@@ -27,7 +26,7 @@ namespace WEBDOG.Controllers
         // GET: DaaryController
         public async Task<ActionResult> Index(Guid id)
         {
-            dogId = id;
+            _id = id;
             var listModel = await db.DogDaarys.Where(p=>p.DogId==id).ToListAsync();
             return View(listModel);
         }
@@ -37,11 +36,10 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
-        public IActionResult Create(Guid id)
+        public IActionResult Create()
         {
-            dogId = id;
-           //var  DrugItems = db.Drugs.Select(p => new SelectListItem()
-           var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
+            
+               var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
                 {
                     Text = DrugModelID.Name,
                     Value = DrugModelID.Id.ToString()
@@ -55,18 +53,7 @@ namespace WEBDOG.Controllers
             return View();
             
         }
-        //public IActionResult ReIndex()
-        //{
-        //    //var viewmodelDrug = new DrugModel();
-        //    var  items = db.Drugs.Select(p => new SelectListItem()
-        //    {
-        //        Value = p.Id.ToString(),
-        //        Text = p.Name
-        //    }).ToList();
-            
-        //    return View(items);
-        //    //return View();
-        //}
+        
 
 
         // POST: DaaryController/Create
@@ -78,10 +65,9 @@ namespace WEBDOG.Controllers
 
             var DogDaary = new DogDaary
             {
-                DogId = id,
+               // DogId = _id,
                 //PersonId = model.PersonId,
                 Date = DateTime.UtcNow,
-                Disease = model.Disease,
                 Dose  = model.Dose,
                 DrugId =model.DrugId,
                 Description = model.Description                
