@@ -16,7 +16,8 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
-        private Guid _id;
+        private Guid dogId;
+        private Guid id;
 
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
@@ -26,7 +27,7 @@ namespace WEBDOG.Controllers
         // GET: DaaryController
         public async Task<ActionResult> Index(Guid id)
         {
-            _id = id;
+            dogId = id;
             var listModel = await db.DogDaarys.Where(p=>p.DogId==id).ToListAsync();
             return View(listModel);
         }
@@ -36,15 +37,9 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
-
-        //public IActionResult Create()
-        //{
-        //      return View();
-        //}
-        
-
-        public IActionResult Create()
+        public IActionResult Create(Guid id)
         {
+            dogId = id;
            //var  DrugItems = db.Drugs.Select(p => new SelectListItem()
            var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
                 {
@@ -83,14 +78,13 @@ namespace WEBDOG.Controllers
 
             var DogDaary = new DogDaary
             {
-                DogId = _id,
-                PersonId = model.PersonId,
+                DogId = id,
+                //PersonId = model.PersonId,
                 Date = DateTime.UtcNow,
                 Disease = model.Disease,
                 Dose  = model.Dose,
                 DrugId =model.DrugId,
-                Description = model.Description
-                
+                Description = model.Description                
             };
 
             db.Add(DogDaary);
@@ -116,6 +110,20 @@ namespace WEBDOG.Controllers
                 return NotFound();
             }
             return View(dogdaary);
+
+            //var DrugItems2 = (from DrugModelID in db.Drugs
+            //                 select new SelectListItem()
+            //                 {
+            //                     Text = DrugModelID.Name,
+            //                     Value = DrugModelID.Id.ToString()
+            //                 }).ToList();
+            //DrugItems2.Insert(0, new SelectListItem()
+            //{
+            //    Text = "-Выбрать лекарство-",
+            //    Value = string.Empty
+            //});
+            //ViewBag.ListDrugIdOff = DrugItems2;
+            //return View();
         }
 
         // POST: DaaryController/Edit/5

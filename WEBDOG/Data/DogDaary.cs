@@ -16,10 +16,11 @@ namespace WEBDOG.Data
 
         //public Person Person { get; set; }
 
-        [Display(Name = "Ветеринар")]
-        public Guid? PersonId { get; set; }
+        //[Display(Name = "Ветеринар")]
+        //public Guid? PersonId { get; set; }
 
         [Display(Name = "Дата вакцинации")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
 
         [Required]
@@ -32,7 +33,6 @@ namespace WEBDOG.Data
 
         [Required]
         [Display(Name = "Лекарства")]
-        public Drug Drug { get; set; }
         public int DrugId { get; set; }
 
         [Display(Name = "Описание")]

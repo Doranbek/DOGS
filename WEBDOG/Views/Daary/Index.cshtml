@@ -7,17 +7,18 @@
 
 <h1>Даарылоо</h1>
 
- <a asp-action="Create" class="btn btn-primary">Добавить новый запись</a>
+<a asp-action="Create" class="btn btn-primary">Добавить новый запись</a>
 
 <table class="table">
     <thead>
-        <tr>
+ 
+         <tr>
             @*<th>
                 @Html.DisplayNameFor(model => model.Dog)
             </th>*@
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.PersonId)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
@@ -37,14 +38,15 @@
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model) {
         <tr>
            @* <td>
                 @Html.DisplayFor(modelItem => item.Dog.Address)
             </td>*@
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.PersonId)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
