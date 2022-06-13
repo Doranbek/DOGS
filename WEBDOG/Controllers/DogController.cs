@@ -35,7 +35,7 @@ namespace WEBDOG.Controllers
         public async Task<ActionResult> Index()
         {
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var listModel = await db.Dogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
+            var listModel = await db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
             return View(listModel);
         }
 

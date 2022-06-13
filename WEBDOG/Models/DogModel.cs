@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WEBDOG.Enums;
 
 namespace WEBDOG.Models
 {
@@ -42,7 +43,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Пол")]
         [Required(ErrorMessage = "Не заполнен пол собак")]
-        public int Gender { get; set; }
+        public GenderStatus Gender { get; set; }
 
         [Display(Name = "Год рождение")]
         [Required(ErrorMessage = "Не заполнен год рождение собак")]
@@ -57,7 +58,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Состояние")]
         [Required(ErrorMessage = "Состояние собак не выбрано")]
-        public int IsAlive { get; set; }       
+        public LiveStatus IsAlive { get; set; }       
         public IEnumerable<SelectListItem> Organizations { get; set; }
         public IEnumerable<SelectListItem> Coats { get; set; }
     }

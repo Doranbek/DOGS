@@ -1,21 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WEBDOG.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBDOG.Data
 {
-    public class Dog
+    [Table(name: "ViewDogs")]
+    public class ViewDog
     {
         [Key]
         public Guid id { get; set; }
 
-        [Display(Name = "COATO")]      
-        public int CoatoId { get; set; }
-        public Coato Coato { get; set; }
+        [Display(Name = "COATO")]
+        public string CoatoId { get; set; }
 
-        [Display(Name = "Организация")]        
+        [Display(Name = "Организация")]
         public int OrganizationId { get; set; }
-        public Organization Organization { get; set; }
 
         [Required]
         [Display(Name = "Номер регистрации")]
@@ -41,9 +40,9 @@ namespace WEBDOG.Data
 
         [Display(Name = "Цвет собак")]
         public string Colour { get; set; }
-                
+
         [Display(Name = "Пол")]
-        public GenderStatus Gender { get; set; }
+        public int Gender { get; set; }
 
         [Display(Name = "Год рождение")]
         public int BirthYear { get; set; }
@@ -55,6 +54,6 @@ namespace WEBDOG.Data
         public string Description { get; set; }
 
         [Display(Name = "Состояние")]
-        public LiveStatus IsAlive { get; set; }
+        public int IsAlive { get; set; }
     }
 }
