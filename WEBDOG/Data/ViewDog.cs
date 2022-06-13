@@ -42,7 +42,7 @@ namespace WEBDOG.Data
         [Display(Name = "Цвет собак")]
         public string Colour { get; set; }
 
-        [Display(Name = "Пол")]
+        [Display(Name = "Пол собаки")]
         public GenderStatus Gender { get; set; }
 
         [Display(Name = "Год рождение")]
@@ -54,7 +54,7 @@ namespace WEBDOG.Data
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        [Display(Name = "Состояние")]
+        [Display(Name = "Состояние собаки")]
         public LiveStatus IsAlive { get; set; }
     }
 }
