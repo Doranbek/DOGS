@@ -18,6 +18,7 @@ namespace WEBDOG.Data
         public DbSet<ViewDog> ViewDogs { get; set; }
         public DbSet<Coato> Coats { get; set; }
         public DbSet<Drug> Drugs { get; set; }
+        public DbSet<Report> Reports { get; set; }
         public DbSet<DogDaary> DogDaarys { get; set; }
         public DbSet<DogKaroo> DogKaroos { get; set; }
 
