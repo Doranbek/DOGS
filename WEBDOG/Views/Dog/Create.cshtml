@@ -1,5 +1,5 @@
-﻿@model WEBDOG.Models.DogModel
-using WEBDOG.Enums.GenderStatus
+﻿@using WEBDOG.Data
+@model WEBDOG.Models.DogModel
 
 @{
     ViewData["Title"] = "Регистрация";
@@ -49,11 +49,10 @@ using WEBDOG.Enums.GenderStatus
                 <span asp-validation-for="Colour" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <select> asp-for="Gender" class="form-control asp-items="html.GetEnumSelectList<GenderStatus>" 
-                    <option value=""> Выберите пол собак</option>
+             <select asp-for="Gender" placeholder="Currency" asp-items="@Html.GetEnumSelectList(typeof(Enums.GenderStatus))">
+                    <option>Выберите пол собак</option>
                 </select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                <span asp-validation-for="Gender" />
             </div>
             <div class="form-group">
                 <label asp-for="BirthYear" class="control-label"></label>
@@ -70,10 +69,11 @@ using WEBDOG.Enums.GenderStatus
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IsAlive" class="control-label"></label>
-                <input asp-for="IsAlive" class="form-control" />
-                <span asp-validation-for="IsAlive" class="text-danger"></span>
+             <div class="form-group">
+             <select asp-for="IsAlive" placeholder="Currency" asp-items="@Html.GetEnumSelectList(typeof(Enums.LiveStatus))">
+                    <option class="form-group">Выберите состояние собак</option>
+                </select>
+                <span asp-validation-for="IsAlive" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-primary" />

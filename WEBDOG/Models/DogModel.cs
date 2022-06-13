@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using WEBDOG.Enums;
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Models
 {

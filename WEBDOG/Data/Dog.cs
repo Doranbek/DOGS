@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WEBDOG.Enums;
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Data
 {
