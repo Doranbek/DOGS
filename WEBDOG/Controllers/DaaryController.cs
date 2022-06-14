@@ -27,8 +27,13 @@ namespace WEBDOG.Controllers
         public async Task<ActionResult> Index(Guid id)
         {
             _id = id;
-            var listModel = await db.DogDaarys.Where(p=>p.DogId==id).ToListAsync();
+            var listModel = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
             return View(listModel);
+            //_id = id; Ката
+            //var listModelOsn = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
+            //var listModel = await db.Drugs.Where(m => m.Id == listModelOsn.DrugId).ToListAsync();
+            //return View(listModel);
+
         }
 
         // GET: DaaryController/Details/5

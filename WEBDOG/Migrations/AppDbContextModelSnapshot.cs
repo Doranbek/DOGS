@@ -669,11 +669,7 @@ namespace WEBDOG.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-<<<<<<< HEAD
-=======
-                    b.Navigation("Dog");
 
->>>>>>> FixBugs
                     b.Navigation("Drug");
                 });
 
