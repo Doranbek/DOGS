@@ -4,15 +4,13 @@ using System.ComponentModel.DataAnnotations;
 namespace WEBDOG.Data
 {
     public class DogKaroo
-    {
-       
+    {       
         [Key]
         [Required]
         public Guid Id { get; set; }
 
         [Display(Name = "Собака")]
-        public Guid DogId { get; set; }
-     
+        public Guid DogId { get; set; }     
         
         [Display(Name = "Дата дегельминтизаци")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
@@ -24,10 +22,8 @@ namespace WEBDOG.Data
         [Display(Name = "Весь")]
         public int Weight { get; set; }
 
-
         [Display(Name = "Колличество таблеток")]
         public int QuantityDrug { get; set; }
-
 
         [Display(Name = "Описание")]
         public string Description { get; set; }

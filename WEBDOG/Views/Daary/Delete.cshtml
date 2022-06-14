@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Удаление</h1>
-
 <h3>Вы действительно хотите удалить?</h3>
 <div>
 
@@ -25,12 +23,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Dose)
         </dd>
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.QuantityDrug)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.QuantityDrug)
-        </dd>*@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -42,6 +34,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Удалить" class="btn btn-danger" /> |
-        <a class = "btn btn-dark" asp-action="Index">Назад</a>
+        <a class ="btn btn-dark" asp-area="" asp-controller="Dog" asp-action="Index">Назад</a>
     </form>
 </div>

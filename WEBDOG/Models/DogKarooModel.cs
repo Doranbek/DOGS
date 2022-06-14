@@ -13,9 +13,7 @@ namespace WEBDOG.Models
 
         public Guid DogId { get; set; }
 
-
         [Display(Name = "Дата дегельминтизации")]
-
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 

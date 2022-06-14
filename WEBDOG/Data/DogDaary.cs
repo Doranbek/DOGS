@@ -9,7 +9,7 @@ namespace WEBDOG.Data
         [Required]
         public Guid Id { get; set; }
 
-        //[Display(Name = "Собака")]
+        [Display(Name = "Собака")]
         public Guid DogId { get; set; }
         protected internal string NameDar { get; set; }
 
@@ -23,10 +23,7 @@ namespace WEBDOG.Data
 
         [Required]
         [Display(Name = "Лекарства")]
-        public int DrugId { get; set; }
-       
-        
-        
+        public int DrugId { get; set; }        
 
         [Display(Name = "Описание")]
         public string Description { get; set; }        

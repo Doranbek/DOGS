@@ -12,8 +12,8 @@ using WEBDOG.Data;
 namespace WEBDOG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220610042134_v4")]
-    partial class v4
+    [Migration("20220614173254_V1")]
+    partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -258,7 +258,6 @@ namespace WEBDOG.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BirthYear")
@@ -305,6 +304,10 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("id");
 
+                    b.HasIndex("CoatoId");
+
+                    b.HasIndex("OrganizationId");
+
                     b.ToTable("Dogs");
                 });
 
@@ -320,9 +323,6 @@ namespace WEBDOG.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Disease")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("DogId")
                         .HasColumnType("uniqueidentifier");
 
@@ -332,12 +332,7 @@ namespace WEBDOG.Migrations
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DrugId");
 
                     b.ToTable("DogDaarys");
                 });
@@ -354,17 +349,11 @@ namespace WEBDOG.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Disease")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("DogId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
-
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("QuantityDrug")
                         .HasColumnType("int");
@@ -386,6 +375,9 @@ namespace WEBDOG.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Disease")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ExpirationDate")
@@ -413,6 +405,9 @@ namespace WEBDOG.Migrations
                     b.Property<int>("Code")
                         .HasColumnType("int");
 
+                    b.Property<string>("Login")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -421,7 +416,7 @@ namespace WEBDOG.Migrations
                     b.ToTable("Organizations");
                 });
 
-            modelBuilder.Entity("WEBDOG.Data.OrgUser", b =>
+            modelBuilder.Entity("WEBDOG.Data.Report", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -429,123 +424,46 @@ namespace WEBDOG.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("OrganizationId")
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrgUsers");
-                });
-
-            modelBuilder.Entity("WEBDOG.Data.Person", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("BirthDay")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("CoatoId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DateOfIssue")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gender")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IssuingOrg")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PassportNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Specialization")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TagNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("University")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CoatoId");
-
-                    b.ToTable("Persons");
-                });
-
-            modelBuilder.Entity("WEBDOG.Models.DogKarooModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Disease")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("DogId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("QuantityDrug")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Weight")
+                    b.Property<int>("OrganizationId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DogKarooModel");
+                    b.HasIndex("DrugId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.ToTable("Reports");
                 });
 
-            modelBuilder.Entity("WEBDOG.Models.DogModel", b =>
+            modelBuilder.Entity("WEBDOG.Data.ViewDog", b =>
                 {
                     b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BirthYear")
                         .HasColumnType("int");
 
                     b.Property<string>("Breed")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CoatoId")
-                        .HasColumnType("int");
+                    b.Property<string>("CoatoId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Colour")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("CreatedDate")
@@ -575,38 +493,12 @@ namespace WEBDOG.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TagNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
-                    b.ToTable("DogModel");
-                });
-
-            modelBuilder.Entity("WEBDOG.Models.DrugModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DrugModel");
+                    b.ToTable("ViewDogs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -660,18 +552,7 @@ namespace WEBDOG.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WEBDOG.Data.DogDaary", b =>
-                {
-                    b.HasOne("WEBDOG.Data.Drug", "Drug")
-                        .WithMany()
-                        .HasForeignKey("DrugId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Drug");
-                });
-
-            modelBuilder.Entity("WEBDOG.Data.Person", b =>
+            modelBuilder.Entity("WEBDOG.Data.Dog", b =>
                 {
                     b.HasOne("WEBDOG.Data.Coato", "Coato")
                         .WithMany()
@@ -679,7 +560,34 @@ namespace WEBDOG.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WEBDOG.Data.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Coato");
+
+                    b.Navigation("Organization");
+                });
+
+            modelBuilder.Entity("WEBDOG.Data.Report", b =>
+                {
+                    b.HasOne("WEBDOG.Data.Drug", "Drug")
+                        .WithMany()
+                        .HasForeignKey("DrugId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WEBDOG.Data.Organization", "Organization")
+                        .WithMany()
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Drug");
+
+                    b.Navigation("Organization");
                 });
 #pragma warning restore 612, 618
         }

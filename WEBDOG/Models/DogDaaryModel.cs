@@ -23,7 +23,6 @@ namespace WEBDOG.Models
 
         [Display(Name = "Доза")]
         [Required(ErrorMessage = "Не указана доза")]
-        //[Range(typeof(decimal), "0.5", "5")]
         public double Dose { get; set; }
 
         [Display(Name = "Лекарства")]
@@ -32,7 +31,6 @@ namespace WEBDOG.Models
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
-
         public List<SelectListItem> ListDrugIdOff { get; set; }
 
 

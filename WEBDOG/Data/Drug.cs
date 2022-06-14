@@ -10,14 +10,11 @@ namespace WEBDOG.Data
         [Required]
         public int Id { get; set; }
 
-
         [Display(Name = "Название")]
         public string Name { get; set; }
 
-
         [Display(Name = "серийный номер")]
         public string SerialNumber { get; set; }
-
 
         [Display(Name = "срок годности")]
 

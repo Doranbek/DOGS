@@ -17,7 +17,6 @@ namespace WEBDOG.Controllers
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
         public Guid dogid;
-        //private Guid dogId2;
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
             _logger = logger;
@@ -27,9 +26,7 @@ namespace WEBDOG.Controllers
         public async Task<ActionResult> Index(Guid id)
         {
             dogid = id;
-            //var listModel = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
-            //return View(listModel);
-
+            
             var listModel = await db.DogDaarys.Where(p => p.DogId == id).Join(db.Drugs, d => d.DrugId, p => p.Id, (d, p) => new DogDaary
             {
                 Id = d.Id,
@@ -51,8 +48,7 @@ namespace WEBDOG.Controllers
             return View();
         }
         public IActionResult Create()
-        {
-            
+        {            
                var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
                 {
                     Text = DrugModelID.Name,
@@ -66,9 +62,7 @@ namespace WEBDOG.Controllers
             ViewBag.ListDrugIdOff = DrugItems;
             return View();
             
-        }
-        
-
+        }    
 
         // POST: DaaryController/Create
         [HttpPost]
@@ -87,9 +81,7 @@ namespace WEBDOG.Controllers
             };
 
             db.Add(DogDaary);
-
             await db.SaveChangesAsync();
-
             return RedirectToAction(nameof(Index));
             
         }
@@ -107,10 +99,7 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
-
-            return View(dogdaary);
-
-            
+            return View(dogdaary);          
 
         }
 
@@ -130,8 +119,6 @@ namespace WEBDOG.Controllers
             {
                 try
                 {
-                    
-
                     db.Update(dogdaary);
                     await db.SaveChangesAsync();
                 }
@@ -153,7 +140,6 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
-
             var daary = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == (Guid)id);
             if (daary == null)
             {

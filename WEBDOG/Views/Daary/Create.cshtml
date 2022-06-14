@@ -35,14 +35,12 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-primary" />
+                <a class ="btn btn-dark" asp-area="" asp-controller="Dog" asp-action="Index">Назад</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Назад</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
