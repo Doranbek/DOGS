@@ -16,8 +16,8 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
-        private Guid _id;
-
+        public Guid dogid;
+        //private Guid dogId2;
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
             _logger = logger;
@@ -26,14 +26,23 @@ namespace WEBDOG.Controllers
         // GET: DaaryController
         public async Task<ActionResult> Index(Guid id)
         {
-            _id = id;
-            var listModel = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
-            return View(listModel);
-            //_id = id; Ката
-            //var listModelOsn = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
-            //var listModel = await db.Drugs.Where(m => m.Id == listModelOsn.DrugId).ToListAsync();
+            dogid = id;
+            //var listModel = await db.DogDaarys.Where(p => p.DogId == id).ToListAsync();
             //return View(listModel);
 
+            var listModel = await db.DogDaarys.Where(p => p.DogId == id).Join(db.Drugs, d => d.DrugId, p => p.Id, (d, p) => new DogDaary
+            {
+                Id = d.Id,
+                DogId = d.DogId,
+                Date = d.Date,
+                Dose = d.Dose,
+                DrugId = d.DrugId,
+                NameDar = p.Name,
+                Description = d.Description
+
+            }).ToListAsync();
+
+            return View(listModel);
         }
 
         // GET: DaaryController/Details/5
@@ -70,8 +79,7 @@ namespace WEBDOG.Controllers
 
             var DogDaary = new DogDaary
             {
-               // DogId = _id,
-                //PersonId = model.PersonId,
+                DogId = dogid,
                 Date = DateTime.UtcNow,
                 Dose  = model.Dose,
                 DrugId =model.DrugId,
@@ -93,28 +101,17 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
-
             var dogdaary = await db.DogDaarys.FindAsync(id);
 
             if (dogdaary == null)
             {
                 return NotFound();
             }
+
             return View(dogdaary);
 
-            //var DrugItems2 = (from DrugModelID in db.Drugs
-            //                 select new SelectListItem()
-            //                 {
-            //                     Text = DrugModelID.Name,
-            //                     Value = DrugModelID.Id.ToString()
-            //                 }).ToList();
-            //DrugItems2.Insert(0, new SelectListItem()
-            //{
-            //    Text = "-Выбрать лекарство-",
-            //    Value = string.Empty
-            //});
-            //ViewBag.ListDrugIdOff = DrugItems2;
-            //return View();
+            
+
         }
 
         // POST: DaaryController/Edit/5
@@ -126,11 +123,15 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
+            
+            return View();
 
-            if (ModelState.IsValid)
+           if (ModelState.IsValid)
             {
                 try
                 {
+                    
+
                     db.Update(dogdaary);
                     await db.SaveChangesAsync();
                 }
@@ -143,6 +144,7 @@ namespace WEBDOG.Controllers
             }
             return View(dogdaary);
         }
+
 
         // GET: DaaryController/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
