@@ -1,5 +1,6 @@
 ﻿@model WEBDOG.Data.DogDaary
 
+
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,37 +14,24 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DogId" />
-            @*<div class="form-group">
-                <label asp-for="DogId" class="control-label"></label>
-                <input asp-for="DogId" class="form-control" />
-                <span asp-validation-for="DogId" class="text-danger"></span>
-            </div>*@
+            
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-           @* <div class="form-group">
-                <label asp-for="PersonId" class="control-label"></label>
-                <input asp-for="PersonId" class="form-control" />
-                <span asp-validation-for="PersonId" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="DrugId" class="control-label"></label>
-                <input asp-for="DrugId" class="form-control" />
-                @*<select asp-for="DrugId" class ="form-control" asp-items="@(new SelectList(ViewBag.ListDrugIdOff,"Value","Text"))"></select>*@
-                <span asp-validation-for="DrugId" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <label asp-for="Dose" class="control-label"></label>
                 <input asp-for="Dose" class="form-control" />
                 <span asp-validation-for="Dose" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="QuantityDrug" class="control-label"></label>
-                <input asp-for="QuantityDrug" class="form-control" />
-                <span asp-validation-for="QuantityDrug" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="DrugId" class="control-label"></label>
+                 @*<input asp-for="DrugId" class="form-control"/>*@
+                <select asp-for="DrugId" class ="form-control" asp-items="@ViewBag.DrugID"></select>
+                @*<span asp-validation-for="DrugId" class="text-danger"></span>*@
+            </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
