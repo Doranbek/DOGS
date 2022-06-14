@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Data
 {
@@ -8,7 +9,7 @@ namespace WEBDOG.Data
         [Key]
         public Guid id { get; set; }
 
-        [Display(Name = "COATO")]      
+        [Display(Name = "Аймак")]      
         public int CoatoId { get; set; }
         public Coato Coato { get; set; }
 
@@ -42,7 +43,7 @@ namespace WEBDOG.Data
         public string Colour { get; set; }
                 
         [Display(Name = "Пол")]
-        public int Gender { get; set; }
+        public GenderStatus Gender { get; set; }
 
         [Display(Name = "Год рождение")]
         public int BirthYear { get; set; }
@@ -54,6 +55,6 @@ namespace WEBDOG.Data
         public string Description { get; set; }
 
         [Display(Name = "Состояние")]
-        public int IsAlive { get; set; }
+        public LiveStatus IsAlive { get; set; }
     }
 }

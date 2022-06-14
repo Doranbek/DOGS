@@ -5,6 +5,7 @@ namespace WEBDOG.Data
 {
     public class DogKaroo
     {
+       
         [Key]
         [Required]
         public Guid Id { get; set; }
@@ -14,6 +15,7 @@ namespace WEBDOG.Data
      
         
         [Display(Name = "Дата дегельминтизаци")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Лекарства")]

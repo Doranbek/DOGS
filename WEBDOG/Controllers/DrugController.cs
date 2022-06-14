@@ -48,7 +48,8 @@ namespace WEBDOG.Controllers
                 Name = model.Name,
                 SerialNumber = model.SerialNumber,
                 ExpirationDate = model.ExpirationDate,
-                Description = model.Description
+                Description = model.Description,
+                Disease = model.Disease
             };
 
             db.Add(Drug);

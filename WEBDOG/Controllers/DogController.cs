@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 using WEBDOG.Models;
+
 
 namespace WEBDOG.Controllers
 {
@@ -35,13 +38,26 @@ namespace WEBDOG.Controllers
         public async Task<ActionResult> Index()
         {
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var listModel = await db.Dogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
+            var listModel = await db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
             return View(listModel);
         }
 
         // GET: DogController/Create
         public ActionResult Create()
         {
+            var selectCoats = (from coats in db.Coats
+                               select new SelectListItem()
+                               {
+                                   Text = coats.Name,
+                                   Value = coats.Id.ToString()
+                               }).ToList();
+            selectCoats.Insert(0, new SelectListItem()
+            {
+                Text = "-Выбрать населенный пункт-",
+                Value = string.Empty
+            });
+            ViewBag.ListCoatIdOff = selectCoats;
+
             return View();
         }
 
@@ -50,12 +66,13 @@ namespace WEBDOG.Controllers
         [ValidateAntiForgeryToken]     
         public async Task<IActionResult> Create(DogModel model)
         {
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
             if (!ModelState.IsValid) return View(model);
 
             var Dog = new Dog
             {
                 CoatoId = model.CoatoId,
-                OrganizationId = model.OrganizationId,
+                OrganizationId = orgModel.Id,
                 TagNumber = model.TagNumber,
                 CreatedDate = DateTime.UtcNow,
                 Owner = model.Owner,
@@ -105,6 +122,47 @@ namespace WEBDOG.Controllers
             db.Dogs.Remove(Deldog);
             await db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var editDog = await db.Dogs.FindAsync(id);
+            if (editDog == null)
+            {
+                return NotFound();
+            }
+            return View(editDog);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(Guid id, Dog model)
+        {
+            if (id != model.id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Update(model);
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(model);
         }
     }
 }

@@ -5,18 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Дегельминтизация</h1>
+<h1>Дегельминтизация собак от эхинококкоза</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="PersonId" class="control-label"></label>
-                <input asp-for="PersonId" class="form-control" />
-                <span asp-validation-for="PersonId" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="DrugId" class="control-label"></label>
                 <input asp-for="DrugId" class="form-control" />
@@ -39,7 +33,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-primary" />
-                <a class ="btn btn-dark" asp-action="Index">Назад</a>
+                <a class ="btn btn-dark" asp-area="" asp-controller="Dog" asp-action="Index">Назад</a>
             </div>
         </form>
     </div>

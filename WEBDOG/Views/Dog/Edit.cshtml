@@ -1,28 +1,30 @@
-﻿@using WEBDOG.Data
-@model WEBDOG.Models.DogModel
+﻿@using static WEBDOG.Data.Enums
+@model WEBDOG.Data.Dog
 
 @{
-    ViewData["Title"] = "Регистрация";
+    ViewData["Title"] = "изменить";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4>Регистрация собак</h4>
+<h1>Изменение</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CoatoId" class="control-label"></label>
-            <select asp-for="CoatoId" class ="form-control" asp-items="@(new SelectList(ViewBag.ListCoatIdOff,"Value","Text"))"></select>
-                <span asp-validation-for="CoatoId" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="id" />
+
             <div class="form-group">
                 <label asp-for="TagNumber" class="control-label"></label>
                 <input asp-for="TagNumber" class="form-control" />
                 <span asp-validation-for="TagNumber" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Owner" class="control-label"></label>
                 <input asp-for="Owner" class="form-control" />
@@ -49,11 +51,11 @@
                 <span asp-validation-for="Colour" class="text-danger"></span>
             </div>
             <div class="form-group">
-            <label asp-for="Gender" class="control-label"></label>
-             <select asp-for="Gender" placeholder="Currency" asp-items="@Html.GetEnumSelectList(typeof(Enums.GenderStatus))">
-                    <option>Выберите пол собак</option>
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control" asp-items="@Html.GetEnumSelectList(typeof(GenderStatus))">
+                    <option>Выберите пол собак (*обезятельно) </option>
                 </select>
-                <span asp-validation-for="Gender" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BirthYear" class="control-label"></label>
@@ -70,24 +72,21 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-             <div class="form-group">
-                 <label asp-for="IsAlive" class="control-label"></label>
-             <select asp-for="IsAlive" placeholder="Currency" asp-items="@Html.GetEnumSelectList(typeof(Enums.LiveStatus))">
-                    <option class="form-group">Выберите состояние собак</option>
+            <div class="form-group">
+                <label asp-for="IsAlive" class="control-label"></label>
+                <select asp-for="IsAlive" class="form-control" asp-items="@Html.GetEnumSelectList(typeof(LiveStatus))">
+                    <option>Выберите живность собак (*обезятельно) </option>
                 </select>
-                <span asp-validation-for="IsAlive" />
+                <span asp-validation-for="IsAlive" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Создать" class="btn btn-primary" />
-                <a class ="btn btn-dark" asp-action="Index">Назад</a>
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+                    <a class="btn btn-dark" asp-action="Index">Назад</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
