@@ -11,7 +11,7 @@ namespace WEBDOG.Data
         [Key]
         public Guid id { get; set; }
 
-        [Display(Name = "COATO")]
+        [Display(Name = "Аймак")]
         public string CoatoId { get; set; }
 
         [Display(Name = "Организация")]

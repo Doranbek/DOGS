@@ -1,7 +1,10 @@
-﻿namespace WEBDOG.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WEBDOG.Data
 {
     public class Coato
     {
+        [Key]
         public int Id { get; set; }
         public int Parent { get; set; }
         public string CoatoNum { get; set; }

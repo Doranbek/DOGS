@@ -1,14 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 using WEBDOG.Models;
+
 
 namespace WEBDOG.Controllers
 {
@@ -42,6 +45,19 @@ namespace WEBDOG.Controllers
         // GET: DogController/Create
         public ActionResult Create()
         {
+            var selectCoats = (from coats in db.Coats
+                               select new SelectListItem()
+                               {
+                                   Text = coats.Name,
+                                   Value = coats.Id.ToString()
+                               }).ToList();
+            selectCoats.Insert(0, new SelectListItem()
+            {
+                Text = "-Выбрать населенный пункт-",
+                Value = string.Empty
+            });
+            ViewBag.ListCoatIdOff = selectCoats;
+
             return View();
         }
 
@@ -50,12 +66,13 @@ namespace WEBDOG.Controllers
         [ValidateAntiForgeryToken]     
         public async Task<IActionResult> Create(DogModel model)
         {
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
             if (!ModelState.IsValid) return View(model);
 
             var Dog = new Dog
             {
                 CoatoId = model.CoatoId,
-                OrganizationId = model.OrganizationId,
+                OrganizationId = orgModel.Id,
                 TagNumber = model.TagNumber,
                 CreatedDate = DateTime.UtcNow,
                 Owner = model.Owner,

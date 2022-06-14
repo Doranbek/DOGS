@@ -53,7 +53,7 @@ namespace WEBDOG.Controllers
                 DogId = _id,
                 Date = DateTime.UtcNow,
                 Weight = model.Weight,
-                DrugId = model.DrugId,  
+                DrugId = model.DrugId,
                 QuantityDrug = model.QuantityDrug,
                 Description = model.Description
             };
