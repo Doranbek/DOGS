@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using static WEBDOG.Data.Enums;
 
@@ -25,5 +27,6 @@ namespace WEBDOG.Models
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
+        public List<SelectListItem> Drugs { get; set; }
     }
 }

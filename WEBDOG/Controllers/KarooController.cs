@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WEBDOG.Data;
@@ -37,7 +39,7 @@ namespace WEBDOG.Controllers
 
         // GET: KarooController/Create
         public ActionResult Create()
-        {
+        { 
             return View();
         }
 
@@ -53,7 +55,6 @@ namespace WEBDOG.Controllers
                 DogId = _id,
                 Date = DateTime.UtcNow,
                 Weight = model.Weight,
-                DrugId = model.DrugId,
                 QuantityDrug = model.QuantityDrug,
                 Description = model.Description
             };

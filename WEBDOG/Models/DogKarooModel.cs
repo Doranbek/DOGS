@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using WEBDOG.Data;
-using static WEBDOG.Data.Enums;
+
 
 namespace WEBDOG.Models
 {
@@ -16,14 +15,6 @@ namespace WEBDOG.Models
         [Display(Name = "Дата дегельминтизации")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
-
-
-        [Display(Name = "Ветеринар")]
-        public Guid? PersonId { get; set; }
-
-        [Display(Name = "Лекарства")]
-        [Required(ErrorMessage = "Не выбрано лекарства")]
-        public int DrugId { get; set; }
 
         [Display(Name = "Весь")]
         [Required(ErrorMessage = "Не указано весь")]
