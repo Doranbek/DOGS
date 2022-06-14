@@ -1,7 +1,8 @@
-﻿@model IEnumerable<WEBDOG.Data.Dog>
+﻿@using WEBDOG.Data
+@model IEnumerable<WEBDOG.Data.ViewDog>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "список";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -84,7 +85,18 @@
                 @Html.DisplayFor(modelItem => item.Colour)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender)
+                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+                
+
+               
+           @*         <label asp-for="@item.Gender">@Enums.GetDisplayName(item.Gender)</label>*@
+@*                    
+                        <label asp-for="@item.Gender" class="control-label">Select Duration</label>
+                        <select asp-for="@item.Gender" class="form-control"
+                            asp-items="Html.GetEnumSelectList<Enums.GenderStatus>()">
+                        </select>*@
+                  
+               
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BirthYear)
@@ -96,7 +108,8 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsAlive)
+                @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))
+@*                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))*@
             </td>
             <td>
                 <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |@*

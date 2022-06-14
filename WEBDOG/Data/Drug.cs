@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Data
 {
@@ -19,6 +20,8 @@ namespace WEBDOG.Data
 
 
         [Display(Name = "срок годности")]
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime ExpirationDate { get; set; }
 
         [Display(Name = "Болезнь")]

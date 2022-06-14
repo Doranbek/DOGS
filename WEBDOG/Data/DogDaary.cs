@@ -12,6 +12,8 @@ namespace WEBDOG.Data
         public Guid DogId { get; set; }
 
         [Display(Name = "Дата вакцинации")]
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
         [Display(Name = "Доза")]

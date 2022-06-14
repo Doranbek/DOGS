@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Models
 {
@@ -10,7 +10,7 @@ namespace WEBDOG.Models
     {
         public Guid id { get; set; }
 
-        [Display(Name = "COATO")]
+        [Display(Name = "Аймак")]
         [Required(ErrorMessage = "Не указан COATO")]
         public int CoatoId { get; set; }
         [Display(Name = "Организация")]
@@ -22,6 +22,8 @@ namespace WEBDOG.Models
         public string TagNumber { get; set; }
 
         [Display(Name = "Дата создания")]
+
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? CreatedDate { get; set; }
 
         [Display(Name = "Ф.И.О. владелца")]
@@ -42,7 +44,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Пол")]
         [Required(ErrorMessage = "Не заполнен пол собак")]
-        public int Gender { get; set; }
+        public GenderStatus Gender { get; set; }
 
         [Display(Name = "Год рождение")]
         [Required(ErrorMessage = "Не заполнен год рождение собак")]
@@ -57,8 +59,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Состояние")]
         [Required(ErrorMessage = "Состояние собак не выбрано")]
-        public int IsAlive { get; set; }       
-        public IEnumerable<SelectListItem> Organizations { get; set; }
-        public IEnumerable<SelectListItem> Coats { get; set; }
+        public LiveStatus IsAlive { get; set; }
+        public List<SelectListItem> ListCoatIdOff { get; set; }
     }
 }
