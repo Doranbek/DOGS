@@ -74,7 +74,7 @@ namespace WEBDOG.Controllers
                 CoatoId = model.CoatoId,
                 OrganizationId = orgModel.Id,
                 TagNumber = model.TagNumber,
-                CreatedDate = DateTime.UtcNow,
+                CreatedDate = model.CreatedDate,
                 Owner = model.Owner,
                 PhoneNumber = model.PhoneNumber,
                 Address = model.Address,

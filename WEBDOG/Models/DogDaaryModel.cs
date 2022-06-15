@@ -17,10 +17,6 @@ namespace WEBDOG.Models
         [DisplayFormat(DataFormatString="{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
-        [Display(Name = "Болезнь")]
-        [Required(ErrorMessage = "Не указан болезнь")]
-        public int Disease { get; set; }
-
         [Display(Name = "Доза")]
         [Required(ErrorMessage = "Не указана доза")]
         public double Dose { get; set; }

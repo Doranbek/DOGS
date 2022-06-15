@@ -33,7 +33,6 @@ namespace WEBDOG.Controllers
                 DogId = d.DogId,
                 Date = d.Date,
                 Dose = d.Dose,
-                DrugId = d.DrugId,
                 NameDar = p.Name,
                 Description = d.Description
 
@@ -74,9 +73,9 @@ namespace WEBDOG.Controllers
             var DogDaary = new DogDaary
             {
                 DogId = dogid,
-                Date = DateTime.UtcNow,
+                Date = model.Date,
                 Dose  = model.Dose,
-                DrugId =model.DrugId,
+                DrugId = 2,
                 Description = model.Description                
             };
 
@@ -140,7 +139,7 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
-            var daary = await db.DogKaroos.FirstOrDefaultAsync(m => m.Id == (Guid)id);
+            var daary = await db.DogDaarys.FirstOrDefaultAsync(m => m.Id == (Guid)id);
             if (daary == null)
             {
                 return NotFound();

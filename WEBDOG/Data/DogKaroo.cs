@@ -16,6 +16,9 @@ namespace WEBDOG.Data
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
 
+        [Display(Name = "Лекарство")]
+        public int DrugId { get; set; }
+
         [Display(Name = "Весь")]
         public int Weight { get; set; }
 
@@ -24,6 +27,5 @@ namespace WEBDOG.Data
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
-
     }
 }
