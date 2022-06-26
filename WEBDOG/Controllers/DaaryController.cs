@@ -16,7 +16,6 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<DaaryController> _logger;
         private readonly AppDbContext db;
-        public Guid dogid;
         public DaaryController(ILogger<DaaryController> logger, AppDbContext db)
         {
             _logger = logger;
@@ -24,9 +23,7 @@ namespace WEBDOG.Controllers
         }
         // GET: DaaryController
         public async Task<ActionResult> Index(Guid id)
-        {
-            dogid = id;
-            
+        {            
             var listModel = await db.DogDaarys.Where(p => p.DogId == id).Join(db.Drugs, d => d.DrugId, p => p.Id, (d, p) => new DogDaary
             {
                 Id = d.Id,
@@ -46,9 +43,13 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
-        public IActionResult Create()
-        {            
-               var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
+        public async Task<IActionResult> Create(Guid Id)
+        {
+            var modelF = await db.DogDaarys.Where(m => m.Id == Id).FirstAsync();
+
+            DogDaaryModel model = new DogDaaryModel();
+            model.DogId = modelF.DogId;
+            var  DrugItems =(from DrugModelID in db.Drugs select new SelectListItem()
                 {
                     Text = DrugModelID.Name,
                     Value = DrugModelID.Id.ToString()
@@ -59,7 +60,7 @@ namespace WEBDOG.Controllers
                 Value=string.Empty 
             });
             ViewBag.ListDrugIdOff = DrugItems;
-            return View();
+            return View(model);
             
         }    
 
@@ -72,7 +73,7 @@ namespace WEBDOG.Controllers
 
             var DogDaary = new DogDaary
             {
-                DogId = dogid,
+                DogId = model.DogId,
                 Date = model.Date,
                 Dose  = model.Dose,
                 DrugId = 2,

@@ -2,34 +2,33 @@
 @{
     ViewData["Title"] = "Отчеты";
 }
-<h1>@ViewData["Title"]</h1>
 
-
+<table border="0">
+       <tr>
         <form method="post" action="/Report/Index"> 
-        <p>
-         Отчет о вакцинации за
-        <input type="number" name="toExpr1" value="2022" />
-        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
-        </p>
+        <th>Отчет о вакцинации за</th>
+        <th><input type="number" name="toExpr1" value="2022" /></th>
+        <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>
         </form>
+       <tr/>
+       <tr>
         <form method="post" action="/Report/Svod"> 
-        <p>
-         Отчет о дегелметизаций за
-        <input type="number" name="toMyear" value="2022" />
-        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
-        </p>
+        <th>Отчет о дегелметизаций за</th>
+        <th><input type="number" name="toMyear" value="2022" /></th>
+        <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />  </th>
         </form>
-        <form method="post" action="/Report/SvodRegion"> 
-        <p>
-         Отчет
-        <input type="number" name="toMyear" value="2022" />
-        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
-        </p>
-        </form>
-        <form method="post" action="/Report/ReportDog"> 
-        <p>
-         Отчет о собаке
-        <input type="text" name="toTagNumber" value="" />
-        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
-        </p>
-        </form>
+       </tr>
+       <tr><form method="post" action="/Report/SvodRegion">
+           <th>Отчет</th>
+           <th><input type="number" name="toMyear" value="2022" /></th>
+           <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>
+           </form>
+       </tr>
+       <tr>
+           <form method="post" action="/Report/ReportDog"> 
+           <th>Отчет о собаке</th>
+           <th><input type="text" placeholder="Введите номер регистрации собак" name="toTagNumber" value="" /></th>
+           <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /></th>
+           </form>
+       </tr>        
+</table>

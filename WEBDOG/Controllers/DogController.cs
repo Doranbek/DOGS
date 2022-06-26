@@ -35,11 +35,25 @@ namespace WEBDOG.Controllers
             this.db = db;
         }
         // GET: DogController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int page = 1)
         {
+            int pageSize = 50;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var listModel = await db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
-            return View(listModel);
+            IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id);
+           var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                PageViewModel = pageViewModel,
+                ViewDogs = items
+            };
+            return View(viewModel);
+
+            //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            //var listModel = await db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
+            //return View(listModel);
         }
 
         // GET: DogController/Create

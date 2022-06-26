@@ -16,7 +16,6 @@ namespace WEBDOG.Controllers
     {
         private readonly ILogger<KarooController> _logger;
         private readonly AppDbContext db;
-        private  Guid _id;
 
         public KarooController(ILogger<KarooController> logger, AppDbContext db)
         {
@@ -26,9 +25,8 @@ namespace WEBDOG.Controllers
         //GET: KarooController
         public async Task<ActionResult> Index(Guid id)
         {
-            _id = id;
-            var listModel = await db.DogKaroos.Where(m => m.DogId == id).ToListAsync();
-            return View(listModel);
+            var model = await db.DogKaroos.Where(m => m.DogId == id).ToListAsync();            
+            return View(model);
         }
 
         // GET: KarooController/Details/5
@@ -38,9 +36,13 @@ namespace WEBDOG.Controllers
         }
 
         // GET: KarooController/Create
-        public ActionResult Create()
-        { 
-            return View();
+        public async Task<ActionResult> Create(Guid Id)
+        {
+            var modelF = await db.DogKaroos.Where(m => m.Id == Id).FirstAsync();
+           DogKarooModel model = new DogKarooModel();
+            model.DogId = modelF.DogId;
+            model.Weight = modelF.Weight;
+            return View(model);
         }
 
         // POST: KarooController/Create
@@ -52,7 +54,7 @@ namespace WEBDOG.Controllers
 
             var DogKaroo = new DogKaroo
             {
-                DogId = _id,
+                DogId = model.DogId,
                 Date = model.Date,
                 DrugId = 2,
                 Weight = model.Weight,

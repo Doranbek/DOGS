@@ -7,33 +7,34 @@
 
 <h1>Дегельминтизация собак от эхинококкоза</h1>
 
- <a asp-action="Create" class="btn btn-primary">Добавить новый запись</a>
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
-
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-               Антигельминтик
+                @Html.DisplayNameFor(model => model.DrugId)
             </th>
             <th>
-                Вес собак, КГ
+                @Html.DisplayNameFor(model => model.Weight)
             </th>
             <th>
-                Кол. таблеток
+                @Html.DisplayNameFor(model => model.QuantityDrug)
             </th>
             <th>
-                Комментарий
+                @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th></th>            
+            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            @Html.HiddenFor(modelItem => item.DogId)
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
@@ -46,14 +47,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
+            <td>                
+                <a asp-action="Create" asp-route-id="@item.Id" class="btn btn-primary">Добавить</a>
+            </td>
             <td>
                 <a  asp-action="Edit" asp-route-id="@item.Id">Изменить</a>                
                 <a  asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
-
         </tr>
-        
 }
     </tbody>
-    
 </table>
