@@ -1,5 +1,6 @@
-﻿@using WEBDOG.Data
-@model IEnumerable<WEBDOG.Data.ViewDog>
+﻿@using WEBDOG.Models
+@using WEBDOG.Data
+@model IndexViewModel
 
 @{
     ViewData["Title"] = "список";
@@ -15,49 +16,50 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CoatoId)
+                @Html.DisplayName("Аймак")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TagNumber)
+                 @Html.DisplayName("номер регистрации")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
+                 @Html.DisplayName("Дата создания")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Owner)
+                @Html.DisplayName("Ф.И.О. хозяина")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
+                @Html.DisplayName("Телефон")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Address)
+                @Html.DisplayName("Адрес")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DogName)
+                 @Html.DisplayName("Имя собак")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Colour)
+              @Html.DisplayName("Цвет")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Html.DisplayName("Пол")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BirthYear)
+                @Html.DisplayName("Год рождение")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Breed)
+                @Html.DisplayName("Порода")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+               @Html.DisplayName("Живность")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsAlive)
+               @Html.DisplayName("Комментарий")
             </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.ViewDogs) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CoatoId)
@@ -95,11 +97,12 @@
                 @Html.DisplayFor(modelItem => item.Breed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))               
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
             <td>
                 <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |@*
                 <a  asp-action="Details" asp-route-id="@item.id">Подробнее</a> |*@
@@ -116,3 +119,21 @@
 }
     </tbody>
 </table>
+@if (Model.PageViewModel.HasPreviousPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+       class="btn btn-outline-dark">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Назад
+    </a>
+}
+@if (Model.PageViewModel.HasNextPage)
+{
+    <a asp-action="Index"
+       asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+       class="btn btn-outline-dark">
+        Вперед
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+}
