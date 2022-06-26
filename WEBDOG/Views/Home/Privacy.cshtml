@@ -1,7 +1,35 @@
 ﻿
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Отчеты";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+
+        <form method="post" action="/Report/Index"> 
+        <p>
+         Отчет о вакцинации за
+        <input type="number" name="toExpr1" value="2022" />
+        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
+        </p>
+        </form>
+        <form method="post" action="/Report/Svod"> 
+        <p>
+         Отчет о дегелметизаций за
+        <input type="number" name="toMyear" value="2022" />
+        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
+        </p>
+        </form>
+        <form method="post" action="/Report/SvodRegion"> 
+        <p>
+         Отчет
+        <input type="number" name="toMyear" value="2022" />
+        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
+        </p>
+        </form>
+        <form method="post" action="/Report/ReportDog"> 
+        <p>
+         Отчет о собаке
+        <input type="text" name="toTagNumber" value="" />
+        <input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />        
+        </p>
+        </form>

@@ -85,17 +85,7 @@
                 @Html.DisplayFor(modelItem => item.Colour)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
-                
-
-               
-           @*         <label asp-for="@item.Gender">@Enums.GetDisplayName(item.Gender)</label>*@
-@*                    
-                        <label asp-for="@item.Gender" class="control-label">Select Duration</label>
-                        <select asp-for="@item.Gender" class="form-control"
-                            asp-items="Html.GetEnumSelectList<Enums.GenderStatus>()">
-                        </select>*@
-                  
+                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))                 
                
             </td>
             <td>
@@ -108,14 +98,12 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))
-@*                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))*@
+                @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))               
             </td>
             <td>
                 <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |@*
                 <a  asp-action="Details" asp-route-id="@item.id">Подробнее</a> |*@
                 <a  asp-action="Delete" asp-route-id="@item.id">Удалить</a>
-
                 @*<a class ="btn btn-link" asp-action="Edit" asp-route-id="@item.id">Изменить</a> |
                 <a class ="btn btn-link" asp-action="Details" asp-route-id="@item.id">Подробнее</a> |
                 <a class="btn btn-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@

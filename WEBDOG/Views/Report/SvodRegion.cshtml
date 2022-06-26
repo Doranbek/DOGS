@@ -1,0 +1,179 @@
+﻿@using WEBDOG.Data
+@model IEnumerable<WEBDOG.Data.View_KarooDaary>
+
+@{
+    ViewData["Title"] = "SvodRegion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Сводный отчет региона</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DogName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Breed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAlive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.myear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SumWeght)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KolTab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expr1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qvar1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qvar2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qvar3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qvar4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoseSum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DogName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Breed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.myear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK1, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK2, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK3, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK4, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SumWeght)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KolTab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expr1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qvar1, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qvar2, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qvar3, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Qvar4, new SelectList(Enum.GetValues(typeof(Enums.GenderStatus))))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoseSum)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -19,5 +19,11 @@ namespace WEBDOG.Data
             Умер = 2,
             Больная
         }
+
+        public enum Status
+        {            
+            да = 1,
+            нет = 0
+        }
     }
 }
