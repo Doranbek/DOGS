@@ -81,7 +81,7 @@ namespace WEBDOG.Data
 
         [Display(Name = "Год вакцинации")]
         [Range(typeof(int), "2005", "2025")]
-        public int Expr1 { get; set; }
+        public int? Expr1 { get; set; }
 
         [Display(Name = "I квартал")]
         public Status? Qvar1 { get; set; }
@@ -96,6 +96,6 @@ namespace WEBDOG.Data
         public Status? Qvar4 { get; set; }
 
         [Display(Name = "Доза")]
-        public double DoseSum { get; set; }
+        public double? DoseSum { get; set; }
     }
 }

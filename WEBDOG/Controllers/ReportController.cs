@@ -111,12 +111,41 @@ namespace WEBDOG.Controllers
             return View(listModel);
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> ReportDog(string toTagNumber)
-        //{
-        //    var listModel = await db.View_KarooDaarys.Where(m =>m.TagNumber == toTagNumber).ToListAsync();
-        //    return View(listModel);
-        //}
+        [HttpPost]
+        public async Task<ActionResult> ReportDog(string toTagNumber)
+        {
+            //var listModel = await db.View_KarooDaarys.Where(m => m.TagNumber == toTagNumber).ToListAsync();
+            var listModel = await db.View_KarooDaary.Where(m => m.TagNumber == toTagNumber).Select(m => new View_KarooDaary
+            {
+                OrdName = m.OrdName,
+                Name = m.Name,
+                TagNumber = m.TagNumber,
+                PhoneNumber = m.PhoneNumber,
+                Owner = m.Owner,
+                Address = m.Address,
+                DogName = m.DogName,
+                Colour = m.Colour,
+                Gender = m.Gender,
+                BirthYear = m.BirthYear,
+                Breed = m.Breed,
+                CreatedDate = m.CreatedDate,
+                IsAlive = m.IsAlive,
+                myear = m.myear,
+                QvartK1 = m.QvartK1,
+                QvartK2 = m.QvartK2,
+                QvartK3 = m.QvartK3,
+                QvartK4 = m.QvartK4,
+                SumWeght = m.SumWeght,
+                KolTab = m.KolTab,
+                Expr1 = m.Expr1,
+                Qvar1 = m.Qvar1,
+                Qvar2 = m.Qvar2,
+                Qvar3 = m.Qvar3,
+                Qvar4 = m.Qvar4,
+                DoseSum = m.DoseSum
+            }).ToListAsync();
+            return View(listModel);
+        }
 
 
 
