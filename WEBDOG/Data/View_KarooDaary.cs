@@ -5,7 +5,7 @@ using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Data
 {
-    [Table(name: "View_KarooDaarys")]
+    [Table(name: "View_KarooDaary")]
     public class View_KarooDaary
     {
         [Key]
@@ -55,7 +55,7 @@ namespace WEBDOG.Data
         [Display(Name = "Состояние собаки")]
         public LiveStatus IsAlive { get; set; }
 
-        [Display(Name = "Год вакцинации")]
+        [Display(Name = "Год лечении")]
         public int myear { get; set; }
 
         [Display(Name = "I квартал")]
@@ -79,7 +79,7 @@ namespace WEBDOG.Data
         public int OrganizationId { get; set; }
         public int CoatoId { get; set; }
 
-        [Display(Name = "Год лечении")]
+        [Display(Name = "Год вакцинации")]
         [Range(typeof(int), "2005", "2025")]
         public int Expr1 { get; set; }
 

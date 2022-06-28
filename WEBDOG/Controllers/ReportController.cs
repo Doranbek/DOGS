@@ -28,7 +28,7 @@ namespace WEBDOG.Controllers
             this.db = db;
         }
         // GET: ReportController
-        //[HttpPost]
+        [HttpPost]
         public async Task<ActionResult> Index(int toExpr1)
         {
             //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
@@ -52,30 +52,73 @@ namespace WEBDOG.Controllers
 
 
 
-            //[HttpPost]
-            //public async Task<ActionResult> Svod(int toMyear)
-            //{
-            //    //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            //    var listModel = await db.View_SvodDogKaroos.Where(m => m.myear == toMyear).ToListAsync();
-            //    return View(listModel);
-            //}
+        [HttpPost]
+        public async Task<ActionResult> Svod(int toMyear)
+        {
+            //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            //var listModel = await db.View_SvodDogKaroos.Where(m => m.myear == toMyear).ToListAsync();
+            //return View(listModel);
 
-            //[HttpPost]
-            //public async Task<ActionResult> SvodRegion(int toMyear)
-            //{
-            //    var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            //    var listModel = await db.View_KarooDaarys.Where(m => m.OrganizationId == orgModel.Id && m.myear == toMyear).ToListAsync();
-            //    return View(listModel);
-            //}
+            var listModel = await db.View_SvodDogKaroo.Where(m => m.myear == toMyear).Select(m => new View_SvodDogKaroo
+            {   OrdName = m.OrdName,
+                kolSobak=m.kolSobak,
+                myear=m.myear,
+                QvartK1=m.QvartK1,
+                QvartK2=m.QvartK2,
+                QvartK3=m.QvartK3,
+                QvartK4=m.QvartK4,
+                srKolTab=m.srKolTab
+            }).ToListAsync();
+            return View(listModel);
+        }
 
-            //[HttpPost]
-            //public async Task<ActionResult> ReportDog(string toTagNumber)
-            //{
-            //    var listModel = await db.View_KarooDaarys.Where(m =>m.TagNumber == toTagNumber).ToListAsync();
-            //    return View(listModel);
-            //}
+        [HttpPost]
+        public async Task<ActionResult> SvodRegion(int toMyear)
+        {
+            //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            //var listModel = await db.View_KarooDaarys.Where(m => m.OrganizationId == orgModel.Id && m.myear == toMyear).ToListAsync();
+            //return View(listModel);
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            var listModel = await db.View_KarooDaary.Where(m => m.OrganizationId == orgModel.Id && m.myear == toMyear).Select(m=> new View_KarooDaary
+            {
+                OrdName=m.OrdName, 
+                Name=m.Name,
+                TagNumber=m.TagNumber,
+                PhoneNumber=m.PhoneNumber,
+                Owner=m.Owner,
+                Address=m.Address,
+                DogName=m.DogName,
+                Colour=m.Colour,
+                Gender=m.Gender,
+                BirthYear=m.BirthYear,
+                Breed=m.Breed,
+                CreatedDate=m.CreatedDate,
+                IsAlive=m.IsAlive,
+                myear=m.myear,
+                QvartK1=m.QvartK1,
+                QvartK2=m.QvartK2,
+                QvartK3=m.QvartK3,
+                QvartK4=m.QvartK4,
+                SumWeght=m.SumWeght,
+                KolTab=m.KolTab,
+                Expr1=m.Expr1,
+                Qvar1=m.Qvar1,
+                Qvar2=m.Qvar2,
+                Qvar3=m.Qvar3,
+                Qvar4=m.Qvar4,
+                DoseSum=m.DoseSum
+            }).ToListAsync();
+            return View(listModel);
+        }
+
+        //[HttpPost]
+        //public async Task<ActionResult> ReportDog(string toTagNumber)
+        //{
+        //    var listModel = await db.View_KarooDaarys.Where(m =>m.TagNumber == toTagNumber).ToListAsync();
+        //    return View(listModel);
+        //}
 
 
-        
+
     }
 }
