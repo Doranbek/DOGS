@@ -29,6 +29,8 @@ namespace WEBDOG.Data
 
         [Display(Name = "IV квартал")]
         public int QvartK4 { get; set; }
-        public int srKolTab { get; set; }
+
+        [Display(Name = "Сред.кол. таблеток")]
+        public decimal srKolTab { get; set; }
     }
 }

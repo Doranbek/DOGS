@@ -74,7 +74,7 @@ namespace WEBDOG.Data
         public int SumWeght { get; set; }
 
         [Display(Name = "Количество таблеток")]
-        public int KolTab { get; set; }
+        public decimal KolTab { get; set; }
 
         public int OrganizationId { get; set; }
         public int CoatoId { get; set; }

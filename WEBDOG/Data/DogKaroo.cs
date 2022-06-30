@@ -23,7 +23,7 @@ namespace WEBDOG.Data
         public int Weight { get; set; }
 
         [Display(Name = "Колличество таблеток")]
-        public int QuantityDrug { get; set; }
+        public decimal QuantityDrug { get; set; }
 
         [Display(Name = "Описание")]
         public string Description { get; set; }
