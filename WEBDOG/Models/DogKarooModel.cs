@@ -14,6 +14,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Дата дегельминтизации")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Весь")]
@@ -22,7 +23,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Колличество доз")]
         [Required(ErrorMessage = "Не указана доза")]
-        public int QuantityDrug { get; set; }
+        public decimal QuantityDrug { get; set; }
 
         [Display(Name = "Описание")]
         public string Description { get; set; }

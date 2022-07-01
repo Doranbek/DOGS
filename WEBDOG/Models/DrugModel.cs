@@ -20,6 +20,7 @@ namespace WEBDOG.Models
         [Display(Name = "срок годности")]
         [Required(ErrorMessage = "Не указан срок годност")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime ExpirationDate { get; set; }
 
         [Display(Name = "Болезнь")]

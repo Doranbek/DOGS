@@ -5,7 +5,7 @@ using static WEBDOG.Data.Enums;
 namespace WEBDOG.Data
     
 {
-    [Table(name: "View_SvodDogKaroos")]
+    [Table(name: "View_SvodDogKaroo")]
     public class View_SvodDogKaroo
     {
         [Display(Name = "Организация")]
@@ -29,6 +29,11 @@ namespace WEBDOG.Data
 
         [Display(Name = "IV квартал")]
         public int QvartK4 { get; set; }
-        public int srKolTab { get; set; }
+
+        [Display(Name = "Сред.кол. таблеток")]
+        public decimal srKolTab { get; set; }
+
+        [Display(Name = "Сумма израсходованных таблеток")]
+        public decimal SumTabl { get; set; }
     }
 }

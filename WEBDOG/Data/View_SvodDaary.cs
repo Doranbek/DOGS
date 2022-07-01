@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBDOG.Data
 {
-    [Table(name: "View_SvodDaarys")]
+    [Table(name: "View_SvodDaary")]
     public class View_SvodDaary
     {
         [Key]
         [Display(Name = "Год лечении")]
-        [Range(typeof(int), "2005", "2025")]
+        //[Range(typeof(int), "2005", "2025")]
         public int Expr1 { get; set; }
 
         [Display(Name = "Организация")]
