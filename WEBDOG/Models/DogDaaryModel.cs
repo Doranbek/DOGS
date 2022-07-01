@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using WEBDOG.Data;
 
 namespace WEBDOG.Models
@@ -14,12 +15,14 @@ namespace WEBDOG.Models
         public Guid DogId { get; set; }
 
         [Display(Name = "Дата вакцинацииМодель")]
-        [DisplayFormat(DataFormatString="{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString="{MM/dd/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Доза")]
-        [Required(ErrorMessage = "Не указана доза")]
-        public double Dose { get; set; }
+        //[Required(ErrorMessage = "Не указана доза")]
+        [Column(TypeName ="decimal(2,1)")]
+        public decimal Dose { get; set; }
 
         [Display(Name = "Лекарства")]
         [Required(ErrorMessage = "Не выбрано лекарства")]

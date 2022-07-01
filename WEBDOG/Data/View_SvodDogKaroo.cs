@@ -32,5 +32,8 @@ namespace WEBDOG.Data
 
         [Display(Name = "Сред.кол. таблеток")]
         public decimal srKolTab { get; set; }
+
+        [Display(Name = "Сумма израсходованных таблеток")]
+        public decimal SumTabl { get; set; }
     }
 }

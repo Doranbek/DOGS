@@ -67,7 +67,8 @@ namespace WEBDOG.Controllers
                 QvartK2=m.QvartK2,
                 QvartK3=m.QvartK3,
                 QvartK4=m.QvartK4,
-                srKolTab=m.srKolTab
+                srKolTab=m.srKolTab,
+                SumTabl=m.SumTabl 
             }).ToListAsync();
             return View(listModel);
         }

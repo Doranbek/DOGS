@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBDOG.Data
 {
@@ -17,9 +18,10 @@ namespace WEBDOG.Data
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Доза")]
-        public double Dose { get; set; }
+        [Column(TypeName = "decimal(2,1)")]
+        public decimal Dose { get; set; }
 
         [Required]
         [Display(Name = "Лекарства")]
