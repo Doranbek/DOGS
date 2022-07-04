@@ -20,7 +20,6 @@ namespace WEBDOG.Data
 
         //[Required]
         [Display(Name = "Доза")]
-        [Column(TypeName = "decimal(2,1)")]
         public decimal Dose { get; set; }
 
         [Required]

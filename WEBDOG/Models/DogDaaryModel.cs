@@ -21,7 +21,8 @@ namespace WEBDOG.Models
 
         [Display(Name = "Доза")]
         //[Required(ErrorMessage = "Не указана доза")]
-        [Column(TypeName ="decimal(2,1)")]
+        //[Column(TypeName = "decimal(2,1)")]
+        //[Range(1, 2), DataType(DataType.Currency)]
         public decimal Dose { get; set; }
 
         [Display(Name = "Лекарства")]

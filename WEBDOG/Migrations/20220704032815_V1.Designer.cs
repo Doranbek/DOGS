@@ -12,8 +12,8 @@ using WEBDOG.Data;
 namespace WEBDOG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220701102858_v2")]
-    partial class v2
+    [Migration("20220704032815_V1")]
+    partial class V1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -327,7 +327,7 @@ namespace WEBDOG.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Dose")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(2,1)");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
@@ -540,7 +540,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("DogId");
 
-                    b.ToTable("View_KarooDaary");
+                    b.ToTable("View_KarooDaarys");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.View_SvodDaary", b =>
@@ -574,7 +574,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("Expr1");
 
-                    b.ToTable("View_SvodDaary");
+                    b.ToTable("View_SvodDaarys");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.View_SvodDogKaroo", b =>
@@ -611,7 +611,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("myear");
 
-                    b.ToTable("View_SvodDogKaroo");
+                    b.ToTable("View_SvodDogKaroos");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.ViewDog", b =>

@@ -108,28 +108,21 @@ namespace WEBDOG.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Guid id, DogDaary dogdaary)
         {
-            if (id != dogdaary.Id)
+            var DogDaaryCreate = new DogDaary
             {
-                return NotFound();
-            }
-            
-            return View();
+                Id = dogdaary.Id,
+                DogId = dogdaary.DogId,
+                Date = dogdaary.Date,
+                Dose = dogdaary.Dose,
+                DrugId = 2,
+                Description = dogdaary.Description
+            };
 
-           if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(dogdaary);
+
+            db.Update(DogDaaryCreate);
                     await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return NotFound();
-                }
 
-                return RedirectToAction(nameof(Index));
-            }
-            return View(dogdaary);
+            return RedirectToAction(nameof(Index));
         }
 
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WEBDOG.Migrations
 {
-    public partial class v1 : Migration
+    public partial class V1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,7 +71,7 @@ namespace WEBDOG.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Dose = table.Column<double>(type: "float", nullable: false),
+                    Dose = table.Column<decimal>(type: "decimal(2,1)", nullable: false),
                     DrugId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -130,7 +130,7 @@ namespace WEBDOG.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "View_KarooDaary",
+                name: "View_KarooDaarys",
                 columns: table => new
                 {
                     DogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -165,11 +165,11 @@ namespace WEBDOG.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_View_KarooDaary", x => x.DogId);
+                    table.PrimaryKey("PK_View_KarooDaarys", x => x.DogId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "View_SvodDaary",
+                name: "View_SvodDaarys",
                 columns: table => new
                 {
                     Expr1 = table.Column<int>(type: "int", nullable: false)
@@ -184,11 +184,11 @@ namespace WEBDOG.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_View_SvodDaary", x => x.Expr1);
+                    table.PrimaryKey("PK_View_SvodDaarys", x => x.Expr1);
                 });
 
             migrationBuilder.CreateTable(
-                name: "View_SvodDogKaroo",
+                name: "View_SvodDogKaroos",
                 columns: table => new
                 {
                     myear = table.Column<int>(type: "int", nullable: false)
@@ -204,7 +204,7 @@ namespace WEBDOG.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_View_SvodDogKaroo", x => x.myear);
+                    table.PrimaryKey("PK_View_SvodDogKaroos", x => x.myear);
                 });
 
             migrationBuilder.CreateTable(
@@ -493,13 +493,13 @@ namespace WEBDOG.Migrations
                 name: "Reports");
 
             migrationBuilder.DropTable(
-                name: "View_KarooDaary");
+                name: "View_KarooDaarys");
 
             migrationBuilder.DropTable(
-                name: "View_SvodDaary");
+                name: "View_SvodDaarys");
 
             migrationBuilder.DropTable(
-                name: "View_SvodDogKaroo");
+                name: "View_SvodDogKaroos");
 
             migrationBuilder.DropTable(
                 name: "ViewDogs");
