@@ -20,10 +20,11 @@ namespace WEBDOG.Models
         public DateTime Date { get; set; }
 
         [Display(Name = "Доза")]
-        [Required(ErrorMessage = "Не указана доза")]
+        //[Required(ErrorMessage = "Не указана доза")]
         [Column(TypeName = "decimal(1,1)")]
+        [DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
         //[RegularExpression(@"^(\d+),(\d{2})$", ErrorMessage = "Доза от 1,00 до 2 на одну собаку за год. ")]
-        [Range(0.5, 2)]
+        [Range(0.4, 2)]
         public decimal Dose { get; set; }
 
         [Display(Name = "Лекарства")]

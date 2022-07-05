@@ -20,6 +20,7 @@ namespace WEBDOG.Data
 
         //[Required]
         [Display(Name = "Доза")]
+        [DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
         public decimal Dose { get; set; }
 
         [Required]
