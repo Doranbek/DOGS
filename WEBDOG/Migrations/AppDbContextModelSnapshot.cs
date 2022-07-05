@@ -241,6 +241,9 @@ namespace WEBDOG.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OrgIdCoats")
+                        .HasColumnType("int");
+
                     b.Property<int>("Parent")
                         .HasColumnType("int");
 
@@ -325,7 +328,7 @@ namespace WEBDOG.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Dose")
-                        .HasColumnType("decimal(2,1)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
@@ -549,8 +552,8 @@ namespace WEBDOG.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Expr1"), 1L, 1);
 
-                    b.Property<int>("KolDos")
-                        .HasColumnType("int");
+                    b.Property<decimal>("KolDos")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("OrdName")
                         .HasColumnType("nvarchar(max)");
