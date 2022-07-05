@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WEBDOG.Data
 {
-    [Table(name: "View_SvodDaary")]
+    [Table(name: "View_SvodDaarys")]
     public class View_SvodDaary
     {
         [Key]
@@ -30,7 +30,7 @@ namespace WEBDOG.Data
         public int QvarK4 { get; set; }
 
         [Display(Name = "Доза")]
-        public int KolDos { get; set; }
+        public decimal KolDos { get; set; }
     }
 }
 

@@ -10,5 +10,6 @@ namespace WEBDOG.Data
         public string CoatoNum { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int OrgIdCoats { get; set; }
     }
 }

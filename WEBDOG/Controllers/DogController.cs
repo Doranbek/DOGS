@@ -57,9 +57,10 @@ namespace WEBDOG.Controllers
         }
 
         // GET: DogController/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            var selectCoats = (from coats in db.Coats
+            var orgModelCoat = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            var selectCoats = (from coats in db.Coats.Where(m=>m.OrgIdCoats== orgModelCoat.Id)
                                select new SelectListItem()
                                {
                                    Text = coats.Name,

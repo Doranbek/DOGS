@@ -5,7 +5,7 @@ using static WEBDOG.Data.Enums;
 namespace WEBDOG.Data
     
 {
-    [Table(name: "View_SvodDogKaroo")]
+    [Table(name: "View_SvodDogKaroos")]
     public class View_SvodDogKaroo
     {
         [Display(Name = "Организация")]

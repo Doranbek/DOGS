@@ -241,6 +241,9 @@ namespace WEBDOG.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("OrgIdCoats")
+                        .HasColumnType("int");
+
                     b.Property<int>("Parent")
                         .HasColumnType("int");
 
@@ -538,7 +541,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("DogId");
 
-                    b.ToTable("View_KarooDaary");
+                    b.ToTable("View_KarooDaarys");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.View_SvodDaary", b =>
@@ -549,8 +552,8 @@ namespace WEBDOG.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Expr1"), 1L, 1);
 
-                    b.Property<int>("KolDos")
-                        .HasColumnType("int");
+                    b.Property<decimal>("KolDos")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("OrdName")
                         .HasColumnType("nvarchar(max)");
@@ -572,7 +575,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("Expr1");
 
-                    b.ToTable("View_SvodDaary");
+                    b.ToTable("View_SvodDaarys");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.View_SvodDogKaroo", b =>
@@ -609,7 +612,7 @@ namespace WEBDOG.Migrations
 
                     b.HasKey("myear");
 
-                    b.ToTable("View_SvodDogKaroo");
+                    b.ToTable("View_SvodDogKaroos");
                 });
 
             modelBuilder.Entity("WEBDOG.Data.ViewDog", b =>

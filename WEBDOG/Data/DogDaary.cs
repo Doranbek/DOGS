@@ -12,7 +12,7 @@ namespace WEBDOG.Data
 
         [Display(Name = "Собака")]
         public Guid DogId { get; set; }
-        protected internal string NameDar { get; set; }
+       // protected internal string NameDar { get; set; }
 
         [Display(Name = "Дата вакцинации")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
@@ -20,7 +20,7 @@ namespace WEBDOG.Data
 
         //[Required]
         [Display(Name = "Доза")]
-        [Column(TypeName = "decimal(2,1)")]
+        [DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
         public decimal Dose { get; set; }
 
         [Required]
