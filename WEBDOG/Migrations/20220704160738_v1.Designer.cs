@@ -12,8 +12,8 @@ using WEBDOG.Data;
 namespace WEBDOG.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220704032815_V1")]
-    partial class V1
+    [Migration("20220704160738_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -327,7 +327,7 @@ namespace WEBDOG.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("Dose")
-                        .HasColumnType("decimal(2,1)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("DrugId")
                         .HasColumnType("int");
@@ -551,8 +551,8 @@ namespace WEBDOG.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Expr1"), 1L, 1);
 
-                    b.Property<int>("KolDos")
-                        .HasColumnType("int");
+                    b.Property<decimal>("KolDos")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("OrdName")
                         .HasColumnType("nvarchar(max)");

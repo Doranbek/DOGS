@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WEBDOG.Migrations
 {
-    public partial class V1 : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,7 +71,7 @@ namespace WEBDOG.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Dose = table.Column<decimal>(type: "decimal(2,1)", nullable: false),
+                    Dose = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DrugId = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -180,7 +180,7 @@ namespace WEBDOG.Migrations
                     QvarK2 = table.Column<int>(type: "int", nullable: false),
                     QvarK3 = table.Column<int>(type: "int", nullable: false),
                     QvarK4 = table.Column<int>(type: "int", nullable: false),
-                    KolDos = table.Column<int>(type: "int", nullable: false)
+                    KolDos = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

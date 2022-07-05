@@ -30,7 +30,7 @@ namespace WEBDOG.Controllers
                 DogId = d.DogId,
                 Date = d.Date,
                 Dose = d.Dose,
-                NameDar = p.Name,
+                //NameDar = p.Name,
                 Description = d.Description
 
             }).ToListAsync();
