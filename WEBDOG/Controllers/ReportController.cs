@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using WEBDOG.Data;
 
 namespace WEBDOG.Controllers
 {
+    [Authorize]
     public class ReportController : Controller
     {
 
@@ -145,6 +147,7 @@ namespace WEBDOG.Controllers
                 Qvar4 = m.Qvar4,
                 DoseSum = m.DoseSum
             }).ToListAsync();
+             
             return View(listModel);
         }
 

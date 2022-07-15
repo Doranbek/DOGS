@@ -39,7 +39,7 @@ namespace WEBDOG.Controllers
         {
             int pageSize = 50;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id);
+            IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).OrderByDescending(m=>m.CreatedDate);
            var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
 

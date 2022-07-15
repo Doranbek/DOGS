@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
+    [Authorize]
     public class KarooController : Controller
     {
         private readonly ILogger<KarooController> _logger;
@@ -34,12 +36,51 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
+        //---------------------------------------------------Новый запись------------------------------------------
+        public IActionResult SearchKaroo()
+        {
+            return View();
+        }
+        //------------------------------
 
+        public IActionResult Create0()
+        {   
+
+            return View();
+        }
+
+        //------------------------------
+
+        // POST: KarooController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create0(NewKarooModel model0)
+        {
+            if (!ModelState.IsValid) return View(model0);
+            var modelFNew = await db.Dogs.Where(m => m.TagNumber == model0.TagNumber).FirstAsync();
+
+            var DogKaroo = new DogKaroo
+            {   
+                DogId = modelFNew.id,
+                Date = model0.Date,
+                DrugId = 2,
+                Weight = model0.Weight,
+                QuantityDrug = model0.QuantityDrug,
+                Description = model0.Description
+            };
+
+            db.Add(DogKaroo);
+
+            await db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+        //---------------------------------------------------Конец новый запись------------------------------------
         // GET: KarooController/Create
         public async Task<ActionResult> Create(Guid Id)
         {
             var modelF = await db.DogKaroos.Where(m => m.Id == Id).FirstAsync();
-           DogKarooModel model = new DogKarooModel();
+            DogKarooModel model = new DogKarooModel();
             model.DogId = modelF.DogId;
             model.Weight = modelF.Weight;
             return View(model);

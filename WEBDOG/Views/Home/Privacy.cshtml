@@ -3,7 +3,9 @@
     ViewData["Title"] = "Отчеты";
 }
 
-<table border="0">
+@*@if (User.IsInRole("admin"))
+{*@
+    <table border="0">
        <tr>
         <form method="post" action="/Report/Index"> 
         <th>Отчет о вакцинации за</th>
@@ -18,6 +20,12 @@
         <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />  </th>
         </form>
        </tr>
+    </table>
+@*}*@
+
+
+  <table border="0">
+       
        <tr><form method="post" action="/Report/SvodRegion">
            <th>Отчет</th>
            <th><input type="number" name="toMyear" value="2022" /></th>
@@ -31,4 +39,5 @@
            <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /></th>
            </form>
        </tr>        
-</table>
+</table>  
+

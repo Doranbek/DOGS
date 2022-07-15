@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using WEBDOG.Data;
 
 namespace WEBDOG.Models
 {
-    public class DogKarooModel
+    public class NewKarooModel
     {
         [Key]
         [Required]
         public Guid Id { get; set; }
 
-        public Guid DogId { get; set; }
+        [Display(Name = "Регистрационный номер собак")]
+        public string TagNumber { get; set; }
 
-        [Display(Name = "Дата дегельминтизации")]
+        [Display(Name = "Дата дегельминтизацииNew1")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }

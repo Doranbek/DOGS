@@ -22,8 +22,8 @@ namespace WEBDOG.Data
         public string TagNumber { get; set; }
 
         [Display(Name = "Дата создания")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime? CreatedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime CreatedDate { get; set; }
 
         [Required]
         [Display(Name = "Ф.И.О. владелца")]

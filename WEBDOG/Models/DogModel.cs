@@ -23,9 +23,9 @@ namespace WEBDOG.Models
 
         [Display(Name = "Дата создания")]
 
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         [Display(Name = "Ф.И.О. владелца")]
         public string Owner { get; set; }

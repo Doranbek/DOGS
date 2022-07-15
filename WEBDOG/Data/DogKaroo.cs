@@ -13,7 +13,8 @@ namespace WEBDOG.Data
         public Guid DogId { get; set; }     
         
         [Display(Name = "Дата дегельминтизаци")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         [Display(Name = "Лекарство")]

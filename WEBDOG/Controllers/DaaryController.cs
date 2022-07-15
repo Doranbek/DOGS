@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using WEBDOG.Models;
 
 namespace WEBDOG.Controllers
 {
+    [Authorize]
     public class DaaryController : Controller
     {
         private readonly ILogger<DaaryController> _logger;

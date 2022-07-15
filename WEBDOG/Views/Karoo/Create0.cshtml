@@ -1,31 +1,37 @@
-﻿@model WEBDOG.Data.DogDaary
-
+﻿@model WEBDOG.Models.NewKarooModel
 
 @{
-    ViewData["Title"] = "Изменить";
-    Layout = "~/Views/Shared/_Layout.cshtml";
- }
+    ViewData["Title"] = "Созадть новую дегельминтизацию";
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-  <h1>Изменить данные о лечении</h1>
-
-   <hr />
-   <div class="row">
+<h1>Дегельминтизация собак от эхинококкоза</h1>
+<hr />
+<div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">            
+        <form asp-action="Create0">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="DogId" />
+              
+            <div class="form-group">
+                <label asp-for="TagNumber" class="control-label"></label>
+                <input asp-for="TagNumber" class="form-control" />
+                <span asp-validation-for="TagNumber" class="text-danger"></span>
+            </div> 
             
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-          
             <div class="form-group">
-                <label asp-for="Dose" class="control-label"></label>
-                <input  asp-for="Dose" class="form-control"/>
-                <span asp-validation-for="Dose" class="text-danger"></span>
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityDrug" class="control-label"></label>
+                <input asp-for="QuantityDrug" class="form-control" />
+                <span asp-validation-for="QuantityDrug" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
@@ -33,17 +39,17 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Сохранить" class="btn btn-primary" />
+                <input type="submit" value="Создать" class="btn btn-primary" />
                 <a class ="btn btn-dark" asp-area="" asp-controller="Dog" asp-action="Index">Назад</a>
             </div>
         </form>
     </div>
- 
- </div>
+</div>
+
 
 @section Scripts {
-   @* @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
-     <script type="text/javascript">
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+    <script type="text/javascript">
          
       
         $.validator.methods.range = function (value, element, param) 
@@ -63,3 +69,5 @@
 
     </script>
 }
+
+

@@ -3,12 +3,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using WEBDOG.Data;
@@ -53,6 +55,7 @@ namespace WEBDOG
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+           
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -60,6 +63,18 @@ namespace WEBDOG
             app.UseAuthentication();
             app.UseAuthorization();
 
+            //Важный коммент для установки культуры т.е. Региональные единицы страны
+            //В основном нужен для языка сайта где работает
+            //es-UY en-US
+            //var defaultCulture = new CultureInfo("es-UY");
+            //var localizationOptions = new RequestLocalizationOptions
+            //{
+            //    DefaultRequestCulture = new RequestCulture(defaultCulture),
+            //    SupportedCultures = new List<CultureInfo> { defaultCulture },
+            //    SupportedUICultures = new List<CultureInfo> { defaultCulture }
+            //};
+            //app.UseRequestLocalization(localizationOptions);
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

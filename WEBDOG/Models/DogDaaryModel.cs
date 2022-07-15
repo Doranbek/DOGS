@@ -21,10 +21,10 @@ namespace WEBDOG.Models
 
         [Display(Name = "Доза")]
         //[Required(ErrorMessage = "Не указана доза")]
-        [Column(TypeName = "decimal(1,1)")]
-        [DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
+        [Column(TypeName = "decimal(1,99)")]
+        //[DisplayFormat(DataFormatString = @"{0:1.1}", ApplyFormatInEditMode = true)]
         //[RegularExpression(@"^(\d+),(\d{2})$", ErrorMessage = "Доза от 1,00 до 2 на одну собаку за год. ")]
-        [Range(0.4, 2)]
+        [Range(0.5, 2,ErrorMessage="Допустимая доза для собаки от 0.5 до 2" )]
         public decimal Dose { get; set; }
 
         [Display(Name = "Лекарства")]
