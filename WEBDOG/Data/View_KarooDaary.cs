@@ -96,6 +96,6 @@ namespace WEBDOG.Data
         public Status? Qvar4 { get; set; }
 
         [Display(Name = "Доза")]
-        public double? DoseSum { get; set; }
+        public decimal? DoseSum { get; set; }
     }
 }

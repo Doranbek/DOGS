@@ -10,17 +10,17 @@
         <form method="post" action="/Report/Index"> 
         <th>Отчет о вакцинации за</th>
         <th><input type="number" name="toExpr1" value="2022" /></th>
-        <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>
+       @* <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>*@
         </form>
        <tr/>
        <tr>
         <form method="post" action="/Report/Svod"> 
         <th>Отчет о дегелметизаций за</th>
         <th><input type="number" name="toMyear" value="2022" /></th>
-        <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />  </th>
+        @*<th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" />  </th>*@
         </form>
        </tr>
-    </table>
+    </table>rfr
 @*}*@
 
 
@@ -29,14 +29,14 @@
        <tr><form method="post" action="/Report/SvodRegion">
            <th>Отчет</th>
            <th><input type="number" name="toMyear" value="2022" /></th>
-           <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>
+           @*<th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /> </th>*@
            </form>
        </tr>
        <tr>
            <form method="post" action="/Report/ReportDog"> 
            <th>Отчет о собаке</th>
            <th><input type="text" placeholder="Введите номер регистрации собак" name="toTagNumber" value="" /></th>
-           <th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /></th>
+           @*<th><input type="submit" value="сформировать отчет" class="btn btn-outline-dark" /></th>*@
            </form>
        </tr>        
 </table>  

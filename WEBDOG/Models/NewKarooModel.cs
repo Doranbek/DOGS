@@ -16,7 +16,7 @@ namespace WEBDOG.Models
         [Display(Name = "Регистрационный номер собак")]
         public string TagNumber { get; set; }
 
-        [Display(Name = "Дата дегельминтизацииNew1")]
+        [Display(Name = "Дата дегельминтизации")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }

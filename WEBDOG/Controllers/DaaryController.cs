@@ -45,6 +45,41 @@ namespace WEBDOG.Controllers
         {
             return View();
         }
+        //-----------------------------------------------Начало добавление нового запися-----------------------------------------------
+        //------------------------------
+
+        public IActionResult CreateNew()
+        {
+
+            return View();
+        }
+
+        //------------------------------
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateNew(NewDaaryModel modelnew)
+        {
+            if (!ModelState.IsValid) return View(modelnew);
+            var modelDNew = await db.Dogs.Where(m => m.TagNumber == modelnew.TagNumber).FirstAsync();
+
+            var DogDaary = new DogDaary
+            {
+                DogId = modelDNew.id,
+                Date = modelnew.Date,
+                Dose = modelnew.Dose,
+                DrugId = 2,
+                Description = modelnew.Description
+            };
+
+            db.Add(DogDaary);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
+
+
+        //-----------------------------------------------Конец добавление нового запися-----------------------------------------------
+
         public async Task<IActionResult> Create(Guid Id)
         {
             var modelF = await db.DogDaarys.Where(m => m.Id == Id).FirstAsync();

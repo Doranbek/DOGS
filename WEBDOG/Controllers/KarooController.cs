@@ -37,13 +37,13 @@ namespace WEBDOG.Controllers
             return View();
         }
         //---------------------------------------------------Новый запись------------------------------------------
-        public IActionResult SearchKaroo()
-        {
-            return View();
-        }
+        //public IActionResult SearchKaroo()
+        //{
+        //    return View();
+        //}
         //------------------------------
 
-        public IActionResult Create0()
+        public IActionResult CreateNew()
         {   
 
             return View();
@@ -54,7 +54,7 @@ namespace WEBDOG.Controllers
         // POST: KarooController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create0(NewKarooModel model0)
+        public async Task<IActionResult> CreateNew(NewKarooModel model0)
         {
             if (!ModelState.IsValid) return View(model0);
             var modelFNew = await db.Dogs.Where(m => m.TagNumber == model0.TagNumber).FirstAsync();
@@ -76,6 +76,10 @@ namespace WEBDOG.Controllers
             return RedirectToAction(nameof(Index));
         }
         //---------------------------------------------------Конец новый запись------------------------------------
+
+        //---------------------------------------------------------------------------------------------------------
+        /// Начало заполнение если есть у собаки история 
+      
         // GET: KarooController/Create
         public async Task<ActionResult> Create(Guid Id)
         {

@@ -7,15 +7,17 @@ using WEBDOG.Data;
 
 namespace WEBDOG.Models
 {
-    public class DogDaaryModel
+    public class NewDaaryModel
     {
         [Key]
         [Required]
         public Guid Id { get; set; }
-        public Guid DogId { get; set; }
+       
+        [Display(Name = "Регистрационный номер собак")]
+        public string TagNumber { get; set; }
 
-        [Display(Name = "Дата вакцинации")]
-        [DisplayFormat(DataFormatString= "{dd/MM/yyyy}")]
+        [Display(Name = "Дата вакцинацииМодель")]
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -24,7 +26,7 @@ namespace WEBDOG.Models
         [Column(TypeName = "decimal(1,99)")]
         //[DisplayFormat(DataFormatString = @"{0:1.1}", ApplyFormatInEditMode = true)]
         //[RegularExpression(@"^(\d+),(\d{2})$", ErrorMessage = "Доза от 1,00 до 2 на одну собаку за год. ")]
-        [Range(0.5, 2,ErrorMessage="Допустимая доза для собаки от 0.5 до 2" )]
+        [Range(0.5, 2, ErrorMessage = "Допустимая доза для собаки от 0.5 до 2")]
         public decimal Dose { get; set; }
 
         [Display(Name = "Лекарства")]
@@ -34,7 +36,5 @@ namespace WEBDOG.Models
         [Display(Name = "Описание")]
         public string Description { get; set; }
         public List<SelectListItem> ListDrugIdOff { get; set; }
-
-
     }
 }

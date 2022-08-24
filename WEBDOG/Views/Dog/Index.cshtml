@@ -11,7 +11,16 @@
 
 <p>
     <a asp-action="Create">Регистрировать новую собаку</a>
+     @using (Html.BeginForm())
+     {    
+        <p>
+        Ведите номер собаки для поиска: @Html.TextBox("SearchDogs")  
+         <input type="submit" value="Поиск" />
+        </p> 
+     } 
 </p>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -106,7 +115,7 @@
             <td>
                 <a  asp-action="Edit" asp-route-id="@item.id">Изменить</a> |@*
                 <a  asp-action="Details" asp-route-id="@item.id">Подробнее</a> |*@
-                <a  asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+                @*<a  asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@
                 @*<a class ="btn btn-link" asp-action="Edit" asp-route-id="@item.id">Изменить</a> |
                 <a class ="btn btn-link" asp-action="Details" asp-route-id="@item.id">Подробнее</a> |
                 <a class="btn btn-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@

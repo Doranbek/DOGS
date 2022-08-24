@@ -37,6 +37,16 @@ namespace WEBDOG
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<AppDbContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "dogsvetkg";
+                options.Cookie.HttpOnly = true;
+                options.LoginPath = "/Identity/Account/Login";
+                //options.ReturnUrlParameter = "ret"
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+            });
             services.AddControllersWithViews();
         }
 
@@ -59,7 +69,7 @@ namespace WEBDOG
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 

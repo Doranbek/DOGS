@@ -16,11 +16,12 @@ namespace WEBDOG.Data
 
         [Display(Name = "Дата вакцинации")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         //[Required]
         [Display(Name = "Доза")]
-        [DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
+        //[DisplayFormat(DataFormatString = @"{0:0.0}", ApplyFormatInEditMode = true)]
         public decimal Dose { get; set; }
 
         [Required]

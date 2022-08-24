@@ -82,7 +82,7 @@ namespace WEBDOG.Controllers
             //var listModel = await db.View_KarooDaarys.Where(m => m.OrganizationId == orgModel.Id && m.myear == toMyear).ToListAsync();
             //return View(listModel);
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var listModel = await db.View_KarooDaary.Where(m => m.OrganizationId == orgModel.Id && m.myear == toMyear).Select(m=> new View_KarooDaary
+            var listModel = await db.View_KarooDaary.Where(m => m.OrganizationId == orgModel.id && m.myear == toMyear).Select(m=> new View_KarooDaary
             {
                 OrdName=m.OrdName, 
                 Name=m.Name,
