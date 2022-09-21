@@ -23,6 +23,7 @@ namespace WEBDOG.Data
 
         [Display(Name = "Дата создания")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
         [Required]
@@ -56,5 +57,10 @@ namespace WEBDOG.Data
 
         [Display(Name = "Состояние")]
         public LiveStatus IsAlive { get; set; }
+
+        [Display(Name = "Дата снятие из БД")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime? DateOfDeath { get; set; }
     }
 }

@@ -62,5 +62,10 @@ namespace WEBDOG.Models
         [Required(ErrorMessage = "Состояние собак не выбрано")]
         public LiveStatus IsAlive { get; set; }
         public List<SelectListItem> ListCoatIdOff { get; set; }
+       
+        [Display(Name = "Дата снятие из БД")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        public DateTime? DateOfDeath { get; set; }
     }
 }

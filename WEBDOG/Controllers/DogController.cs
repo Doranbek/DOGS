@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -52,7 +53,7 @@ namespace WEBDOG.Controllers
         //    };
         //    return View(viewModel);
         //}
-        public async Task<ActionResult> Index(int page = 1, string SearchDogs = default)
+        public async Task<ActionResult> Index(int page = 1, string SearchDogs = default, string SearchAiyl=default)
         {
             int pageSize = 50;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
@@ -64,6 +65,12 @@ namespace WEBDOG.Controllers
             if (!String.IsNullOrEmpty(SearchDogs))
             {
                 items = await db.ViewDogs.Where(s => s.TagNumber.Contains(SearchDogs)&& s.OrganizationId == orgModel.id).ToListAsync();
+                //return View(viewModel);
+
+            }
+            if (!String.IsNullOrEmpty(SearchAiyl))
+            {
+                items = await db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).ToListAsync();
                 //return View(viewModel);
 
             }
@@ -137,7 +144,8 @@ namespace WEBDOG.Controllers
                 BirthYear = model.BirthYear,
                 Breed = model.Breed,
                 Description = model.Description,
-                IsAlive = model.IsAlive
+                IsAlive = model.IsAlive,
+                DateOfDeath=model.DateOfDeath
 
             };
 

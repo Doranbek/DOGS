@@ -52,6 +52,9 @@
                 @Html.DisplayNameFor(model => model.IsAlive)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.DateOfDeath)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.myear)
             </th>
             <th>
@@ -135,6 +138,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsAlive, new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))
             </td>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfDeath)
+            </th>
             <td>
                 @Html.DisplayFor(modelItem => item.myear)
             </td>

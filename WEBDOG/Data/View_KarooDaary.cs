@@ -50,10 +50,16 @@ namespace WEBDOG.Data
         [Display(Name = "Дата создания")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         [Range(typeof(int), "2005", "2025")]
+        [DataType(DataType.Date)]
         public DateTime? CreatedDate { get; set; }
 
         [Display(Name = "Состояние собаки")]
         public LiveStatus IsAlive { get; set; }
+
+        [Display(Name = "Дата снятие из БД")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [Range(typeof(int), "2005", "2025")]
+        public DateTime? DateOfDeath { get; set; }
 
         [Display(Name = "Год лечении")]
         public int myear { get; set; }
