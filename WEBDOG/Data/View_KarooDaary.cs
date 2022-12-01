@@ -48,7 +48,7 @@ namespace WEBDOG.Data
         public string Breed { get; set; }
 
         [Display(Name = "Дата создания")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Range(typeof(int), "2005", "2025")]
         [DataType(DataType.Date)]
         public DateTime? CreatedDate { get; set; }
@@ -57,8 +57,8 @@ namespace WEBDOG.Data
         public LiveStatus IsAlive { get; set; }
 
         [Display(Name = "Дата снятие из БД")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        [Range(typeof(int), "2005", "2025")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime? DateOfDeath { get; set; }
 
         [Display(Name = "Год лечении")]

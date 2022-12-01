@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <UserSecretsId>aspnet-WEBDOG-87AEC9E9-2265-47CD-BDA8-63EF3D4183EF</UserSecretsId>
+	<UserSecretsId>aspnet-WEBDOG-87AEC9E9-2265-47CD-BDA8-63EF3D4183EF</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

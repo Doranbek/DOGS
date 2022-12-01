@@ -24,6 +24,8 @@ namespace WEBDOG.Data
         public DbSet<View_KarooDaary> View_KarooDaary { get; set; }
         public DbSet<View_SvodDaary> View_SvodDaary { get; set; }
         public DbSet<View_SvodDogKaroo> View_SvodDogKaroo { get; set; }
+        public DbSet<ViewSvodAimak> ViewSvodAimak { get; set; }
+        public DbSet<ViewSvodAimaksD> ViewSvodAimaksD { get; set; }
 
 
     }

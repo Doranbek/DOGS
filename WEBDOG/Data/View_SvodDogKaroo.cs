@@ -15,7 +15,7 @@ namespace WEBDOG.Data
         public int kolSobak { get; set; }
 
         [Key]
-        [Display(Name = "Год вакцинации")]
+        [Display(Name = "Год дегелметизации")]
         public int myear { get; set; }
 
         [Display(Name = "I квартал")]

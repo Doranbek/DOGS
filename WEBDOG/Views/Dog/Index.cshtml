@@ -17,10 +17,17 @@
         Ведите номер собаки для поиска: @Html.TextBox("SearchDogs")  
          <input type="submit" value="Поиск" />
         </p> 
+
         <p>
-        Ведите айыл для поиска: @Html.TextBox("SearchAiyl")  
+        Выберите айыл для поиска: @Html.DropDownList("SearchAiyl", new SelectList(ViewBag.ListCoatIdOff,"Value","Text") ) 
          <input type="submit" value="Поиск" />
         </p> 
+
+        @* <p>
+        Ведите айыл для поиска: @Html.TextBox("SearchAiyl")  
+         <input type="submit" value="Поиск" />
+        </p> *@
+        
      } 
 </p>
 
@@ -131,8 +138,8 @@
                 <a class="btn btn-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>*@
             </td>
             <td>
-                <a asp-action="Index" asp-controller="Karoo" asp-route-id="@item.id">Дегельминтизация</a>
-                <a asp-action="Index" asp-controller="Daary" asp-route-id="@item.id">Вакцинация</a>
+                <a asp-action="Index" asp-controller="Karoo" asp-route-id="@item.id" target="_blank">Дегельминтизация</a>
+                <a asp-action="Index" asp-controller="Daary" asp-route-id="@item.id" target="_blank">Вакцинация</a>
             </td>
         </tr>
 }

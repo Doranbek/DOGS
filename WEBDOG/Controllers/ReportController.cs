@@ -52,6 +52,30 @@ namespace WEBDOG.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<ActionResult> SvodAimakD(int toExpr1)
+        {
+            //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            //toExpr1 = 2018;
+            //var listModel = await db.View_SvodDaary.Where(m => m.Expr1 == toExpr1).ToListAsync();
+            //return View(listModel);
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            var listModel = await db.ViewSvodAimaksD.Where(m => m.OrganizationId == orgModel.id && m.Expr1 == toExpr1).Select(m => new ViewSvodAimaksD
+            {
+                Expr1 = m.Expr1,
+                OrdName = m.OrdName,
+                Name = m.Name,
+                kolSobak = m.kolSobak,
+                QvarK1 = m.QvarK1,
+                QvarK2 = m.QvarK2,
+                QvarK3 = m.QvarK3,
+                QvarK4 = m.QvarK4,
+                KolDos = m.KolDos
+            }).ToListAsync();
+            return View(listModel);
+
+        }
+
 
 
         [HttpPost]
@@ -71,6 +95,29 @@ namespace WEBDOG.Controllers
                 QvartK4=m.QvartK4,
                 srKolTab=m.srKolTab,
                 SumTabl=m.SumTabl 
+            }).ToListAsync();
+            return View(listModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SvodAimak(int toMyear)
+        {
+            var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
+            //var listModel = await db.View_SvodDogKaroos.Where(m => m.myear == toMyear).ToListAsync();
+            //return View(listModel);
+
+            var listModel = await db.ViewSvodAimak.Where(m => m.OrganizationId == orgModel.id && m.myear == toMyear).Select(m => new ViewSvodAimak
+            {
+                OrdName = m.OrdName,
+                Name = m.Name,
+                kolSobak = m.kolSobak,
+                myear = m.myear,
+                QvartK1 = m.QvartK1,
+                QvartK2 = m.QvartK2,
+                QvartK3 = m.QvartK3,
+                QvartK4 = m.QvartK4,
+                srKolTab = m.srKolTab,
+                SumTabl = m.SumTabl
             }).ToListAsync();
             return View(listModel);
         }

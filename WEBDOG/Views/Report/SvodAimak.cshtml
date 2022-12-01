@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WEBDOG.Data.ViewSvodAimak>
+
+@{
+    ViewData["Title"] = "SvodAimak";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Дегелметизация свод по районам</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.myear)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.kolSobak)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QvartK4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.srKolTab)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.SumTabl)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.myear)
+            </th> 
+            <td>
+                @Html.DisplayFor(modelItem => item.kolSobak)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QvartK4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.srKolTab)
+            </td>
+             <th>
+                @Html.DisplayFor(modelItem => item.SumTabl)
+            </th>
+        </tr>
+}
+    </tbody>
+</table>

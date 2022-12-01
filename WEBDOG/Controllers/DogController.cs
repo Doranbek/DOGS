@@ -36,44 +36,42 @@ namespace WEBDOG.Controllers
             _logger = logger;
             this.db = db;
         }
-        // GET: DogController
-        //public async Task<ActionResult> Index(int page = 1)
-        //{
-        //    int pageSize = 50;
-        //    var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-        //    IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.id);
-        //    var count = await source.CountAsync();
-        //    var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-
-        //    PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
-        //    IndexViewModel viewModel = new IndexViewModel
-        //    {
-        //        PageViewModel = pageViewModel,
-        //        ViewDogs = items
-        //    };
-        //    return View(viewModel);
-        //}
+       
         public async Task<ActionResult> Index(int page = 1, string SearchDogs = default, string SearchAiyl=default)
         {
             int pageSize = 50;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-
-            //var orgModel = db.Organizations.Where(m => m.Login == userlogin).ToListAsync();
+                        
             IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.id).OrderByDescending(m => m.CreatedDate);
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+           
             if (!String.IsNullOrEmpty(SearchDogs))
             {
                 items = await db.ViewDogs.Where(s => s.TagNumber.Contains(SearchDogs)&& s.OrganizationId == orgModel.id).ToListAsync();
-                //return View(viewModel);
-
+              
             }
+            
+            //----------------------------------------
+            var selectCoats = (from coats in db.Coats.Where(m => m.OrgIdCoats == orgModel.id)
+                               select new SelectListItem()
+                               {
+                                   Text = coats.Name,
+                                   Value = coats.Name.ToString()
+                               }).ToList();
+            selectCoats.Insert(0, new SelectListItem()
+            {
+                Text = "-Выберите айылный аймак-",
+                Value = string.Empty
+            });
+            ViewBag.ListCoatIdOff = selectCoats;
+
             if (!String.IsNullOrEmpty(SearchAiyl))
             {
-                items = await db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).ToListAsync();
-                //return View(viewModel);
-
+                items = await db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber).ToListAsync();
             }
+            //----------------------------------------
+
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             IndexViewModel viewModel = new IndexViewModel
             {
@@ -82,30 +80,14 @@ namespace WEBDOG.Controllers
             };
 
             return View(viewModel);
-
-            //var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            //var listModel = await db.ViewDogs.Where(m => m.OrganizationId == orgModel.Id).ToListAsync();
-            //return View(listModel);
+                        
         }
-        //public ActionResult Index(string SearchDogs)
-        //{
-        //    //var TagNumberSearch = from m in db.ViewDogs
-        //    //             select m;
-        //    var TagNumberSearch;
-        //    if (!String.IsNullOrEmpty(SearchDogs))
-        //    {
-        //        var TagNumberSearch = await db.ViewDogs.Where(s => s.TagNumber.Contains(SearchDogs)).ToListAsync();
-        //        return View(TagNumberSearch);
-
-        //    }
-        //    return View(viewModel);
-
-        //}
+        
         // GET: DogController/Create
         public async Task<ActionResult> Create()
         {
             var orgModelCoat = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var selectCoats = (from coats in db.Coats.Where(m=>m.OrgIdCoats== orgModelCoat.id)
+            var selectCoats = (from coats in db.Coats.Where(m=>m.OrgIdCoats== orgModelCoat.id && m.Description == "")
                                select new SelectListItem()
                                {
                                    Text = coats.Name,
