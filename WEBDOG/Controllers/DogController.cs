@@ -41,18 +41,8 @@ namespace WEBDOG.Controllers
         {
             int pageSize = 50;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-                        
-            IQueryable<ViewDog> source = db.ViewDogs.Where(m => m.OrganizationId == orgModel.id).OrderByDescending(m => m.CreatedDate);
-            var count = await source.CountAsync();
-            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-           
-            if (!String.IsNullOrEmpty(SearchDogs))
-            {
-                items = await db.ViewDogs.Where(s => s.TagNumber.Contains(SearchDogs)&& s.OrganizationId == orgModel.id).ToListAsync();
-              
-            }
-            
-            //----------------------------------------
+            //----------------------------------------           
+
             var selectCoats = (from coats in db.Coats.Where(m => m.OrgIdCoats == orgModel.id)
                                select new SelectListItem()
                                {
@@ -66,15 +56,26 @@ namespace WEBDOG.Controllers
             });
             ViewBag.ListCoatIdOff = selectCoats;
 
-            if (!String.IsNullOrEmpty(SearchAiyl))
-            {
-                items = await db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber).ToListAsync();
-            }
+
             //----------------------------------------
 
+            //if (!String.IsNullOrEmpty(SearchAiyl))
+            //{
+            IQueryable<ViewDog> source = db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber);
+            var count = await source.CountAsync();
+            var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            //}
+            
+            if (!String.IsNullOrEmpty(SearchDogs))
+            {
+                items = await db.ViewDogs.Where(s => s.TagNumber.Contains(SearchDogs) && s.OrganizationId == orgModel.id).ToListAsync();
+
+            }
+
+            //----------------------------------------
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
             IndexViewModel viewModel = new IndexViewModel
-            {
+            {   
                 PageViewModel = pageViewModel,
                 ViewDogs = items
             };
