@@ -39,7 +39,7 @@ namespace WEBDOG.Controllers
        
         public async Task<ActionResult> Index(int page = 1, string SearchDogs = default, string SearchAiyl=default)
         {
-            int pageSize = 50;
+            int pageSize = 6000;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
             //----------------------------------------           
 
@@ -61,7 +61,7 @@ namespace WEBDOG.Controllers
 
             //if (!String.IsNullOrEmpty(SearchAiyl))
             //{
-            IQueryable<ViewDog> source = db.ViewDogs.Where(s => s.CoatoId.Contains(SearchAiyl) && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber);
+            IQueryable<ViewDog> source = db.ViewDogs.Where(s => s.CoatoId==SearchAiyl && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber);
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             //}
@@ -193,16 +193,18 @@ namespace WEBDOG.Controllers
             }
 
             if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(model);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    return NotFound();
-                }
+            {//if (Enum.LiveStatus =2 && model.DateOfDeath==null )
+                //{
+                    try
+                    {
+                        db.Update(model);
+                        await db.SaveChangesAsync();
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        return NotFound();
+                    } 
+                //}
 
                 return RedirectToAction(nameof(Index));
             }

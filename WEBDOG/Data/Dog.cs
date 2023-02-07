@@ -22,7 +22,7 @@ namespace WEBDOG.Data
         public string TagNumber { get; set; }
 
         [Display(Name = "Дата создания")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
@@ -59,8 +59,10 @@ namespace WEBDOG.Data
         public LiveStatus IsAlive { get; set; }
 
         [Display(Name = "Дата снятие из БД")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime? DateOfDeath { get; set; }
+
+        
     }
 }

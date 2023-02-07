@@ -98,7 +98,7 @@ namespace WEBDOG.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Неверная попытка входа или логин неправильный.");
                     return Page();
                 }
             }

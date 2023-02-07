@@ -23,7 +23,7 @@ namespace WEBDOG.Models
 
         [Display(Name = "Дата создания")]
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }
 
@@ -62,10 +62,14 @@ namespace WEBDOG.Models
         [Required(ErrorMessage = "Состояние собак не выбрано")]
         public LiveStatus IsAlive { get; set; }
         public List<SelectListItem> ListCoatIdOff { get; set; }
-       
+
+
+
         [Display(Name = "Дата снятие из БД")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
+
         public DateTime? DateOfDeath { get; set; }
+       
     }
 }
