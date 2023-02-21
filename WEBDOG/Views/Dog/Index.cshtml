@@ -9,7 +9,7 @@
 
 <h1>Список регистрированных собак</h1>
 
-<p>
+ 
     <a asp-action="Create">Регистрировать новую собаку</a>
      @using (Html.BeginForm())
      {    
@@ -19,8 +19,10 @@
         </p> 
 
         <p>
-        Выберите айыл для поиска: @Html.DropDownList("SearchAiyl", new SelectList(ViewBag.ListCoatIdOff,"Value","Text") ) 
-         <input type="submit" value="Поиск" />
+        Выберите айыл для поиска: @Html.DropDownList("SearchAiyl", new SelectList(ViewBag.ListCoatIdOff,"Value","Text") )
+        
+        Выберите состояние собак: @Html.DropDownList("SearchStatus", new SelectList(Enum.GetValues(typeof(Enums.LiveStatus))))
+        <input type="submit" value="Поиск" />
         </p> 
 
         @* <p>
@@ -29,7 +31,8 @@
         </p> *@
         
      } 
-</p>
+ 
+
 
 
 <table class="table">
@@ -85,7 +88,7 @@
 @foreach (var item in Model.ViewDogs) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CoatoId)
+                @Html.DisplayFor(modelItem => item.CoatsName)
             </td>
 
             <td>

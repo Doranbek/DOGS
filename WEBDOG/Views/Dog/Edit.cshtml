@@ -83,10 +83,10 @@
             </div>
             <div class="form-group">
                
-                    <label asp-for="DateOfDeath" class="control-label"></label>
-                    <input asp-for="DateOfDeath" class="form-control" />
-                    <span asp-validation-for="CreatedDate" class="text-danger"></span>
-                
+                <label asp-for="DateOfDeath" class="control-label"></label>
+                <input asp-for="DateOfDeath" class="form-control" />
+                @*<span asp-validation-for="DateOfDeath" class="text-danger"></span>*@
+                <p><span @Html.ValidationMessage("Ошибка ввода",new {@class="text-danger"})></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary" />

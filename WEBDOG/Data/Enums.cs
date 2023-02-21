@@ -17,7 +17,7 @@ namespace WEBDOG.Data
         {
             Жив = 1,
             Умер = 2,
-            Больная
+            
         }
 
         public enum Status

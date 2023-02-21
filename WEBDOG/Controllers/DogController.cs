@@ -4,15 +4,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.ValueGeneration.Internal;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using WEBDOG.Data;
 using WEBDOG.Models;
-
+using static WEBDOG.Data.Enums;
 
 namespace WEBDOG.Controllers
 {
@@ -37,7 +39,7 @@ namespace WEBDOG.Controllers
             this.db = db;
         }
        
-        public async Task<ActionResult> Index(int page = 1, string SearchDogs = default, string SearchAiyl=default)
+        public async Task<ActionResult> Index(ViewDog DogModelK, int page = 1, string SearchDogs = default,int SearchAiyl=default, string SearchStatus = default)
         {
             int pageSize = 6000;
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
@@ -47,7 +49,7 @@ namespace WEBDOG.Controllers
                                select new SelectListItem()
                                {
                                    Text = coats.Name,
-                                   Value = coats.Name.ToString()
+                                   Value = coats.Id.ToString()
                                }).ToList();
             selectCoats.Insert(0, new SelectListItem()
             {
@@ -56,12 +58,14 @@ namespace WEBDOG.Controllers
             });
             ViewBag.ListCoatIdOff = selectCoats;
 
+            if (SearchStatus == null)
+                SearchStatus = "Жив";
 
-            //----------------------------------------
+            var myValueAsEnum = (LiveStatus)Enum.Parse(typeof(LiveStatus), SearchStatus);
 
-            //if (!String.IsNullOrEmpty(SearchAiyl))
-            //{
-            IQueryable<ViewDog> source = db.ViewDogs.Where(s => s.CoatoId==SearchAiyl && s.OrganizationId == orgModel.id).OrderBy(s => s.TagNumber);
+            //----------------------------------------     
+
+            IQueryable<ViewDog> source = db.ViewDogs.Where(s => s.CoatsId == SearchAiyl && s.OrganizationId == orgModel.id && s.IsAlive==myValueAsEnum).OrderBy(s => s.TagNumber);
             var count = await source.CountAsync();
             var items = await source.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             //}
@@ -191,10 +195,16 @@ namespace WEBDOG.Controllers
             {
                 return NotFound();
             }
-
+            if (model.IsAlive == Enums.LiveStatus.Умер && model.DateOfDeath == null)
+            
+                ModelState.AddModelError("Ошибка ввода", "Не указана дата. Если состояние собаки <<Умер>>. " +
+                    "Укажите дату снятие из БД. Который ближе к последней дате дегельметизации и вакцинации!!!");  
+            
+            
             if (ModelState.IsValid)
-            {//if (Enum.LiveStatus =2 && model.DateOfDeath==null )
-                //{
+            {
+
+                
                     try
                     {
                         db.Update(model);
@@ -204,7 +214,7 @@ namespace WEBDOG.Controllers
                     {
                         return NotFound();
                     } 
-                //}
+                
 
                 return RedirectToAction(nameof(Index));
             }

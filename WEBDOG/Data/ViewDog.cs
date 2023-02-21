@@ -11,8 +11,10 @@ namespace WEBDOG.Data
         [Key]
         public Guid id { get; set; }
 
+        public int CoatsId { get; set; }
+
         [Display(Name = "Аймак")]
-        public string CoatoId { get; set; }
+        public string CoatsName { get; set; }
 
         [Display(Name = "Организация")]
         public int OrganizationId { get; set; }
@@ -56,7 +58,7 @@ namespace WEBDOG.Data
         public string Description { get; set; }
 
         [Display(Name = "Состояние собаки")]
-        public LiveStatus IsAlive { get; set; }
+        public LiveStatus? IsAlive { get; set; }
 
         [Display(Name = "Дата снятие из БД")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
