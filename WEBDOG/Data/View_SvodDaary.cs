@@ -9,10 +9,10 @@ namespace WEBDOG.Data
         [Key]
         [Display(Name = "Год лечении")]
         //[Range(typeof(int), "2005", "2025")]
-        public int Expr1 { get; set; }
+        public int myear { get; set; }
 
         [Display(Name = "Организация")]
-        public string OrdName { get; set; }
+        public string OrdName2 { get; set; }
 
         [Display(Name = "Количество собак")]
         public int kolSobak { get; set; }

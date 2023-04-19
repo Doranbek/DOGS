@@ -37,10 +37,10 @@ namespace WEBDOG.Controllers
             //toExpr1 = 2018;
             //var listModel = await db.View_SvodDaary.Where(m => m.Expr1 == toExpr1).ToListAsync();
             //return View(listModel);
-            var listModel = await db.View_SvodDaary.Where(m => m.Expr1 == toExpr1).Select(m => new View_SvodDaary
+            var listModel = await db.View_SvodDaary.Where(m => m.myear == toExpr1).Select(m => new View_SvodDaary
             {
-                Expr1 = m.Expr1,
-                OrdName = m.OrdName,
+                myear = m.myear,
+                OrdName2 = m.OrdName2,
                 kolSobak = m.kolSobak,
                 QvarK1 = m.QvarK1,
                 QvarK2 = m.QvarK2,
@@ -60,10 +60,10 @@ namespace WEBDOG.Controllers
             //var listModel = await db.View_SvodDaary.Where(m => m.Expr1 == toExpr1).ToListAsync();
             //return View(listModel);
             var orgModel = await db.Organizations.FirstAsync(m => m.Login == userlogin);
-            var listModel = await db.ViewSvodAimaksD.Where(m => m.OrganizationId == orgModel.id && m.Expr1 == toExpr1).Select(m => new ViewSvodAimaksD
+            var listModel = await db.ViewSvodAimaksD.Where(m => m.OrganizationId == orgModel.id && m.myear == toExpr1).Select(m => new ViewSvodAimaksD
             {
-                Expr1 = m.Expr1,
-                OrdName = m.OrdName,
+                myear = m.myear,
+                OrdName2 = m.OrdName2,
                 Name = m.Name,
                 kolSobak = m.kolSobak,
                 QvarK1 = m.QvarK1,
